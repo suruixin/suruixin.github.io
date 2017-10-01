@@ -1,0 +1,16 @@
+.t,
+#home {
+  transition: all .3s;
+}
+#home {
+  width: 100%;
+  margin: 0 auto;
+  /*background: url(images/timg.jpg) no-repeat;*/
+  background-size: 100% auto;
+  transition: all .6s;
+  overflow: auto;
+}
+.shade {
+  width: 80%;
+  height: 200px;
+}

@@ -1,0 +1,43 @@
+.w(@w:100%){
+    width: @w;
+}
+.h(@h:auto){
+    height: @h;
+}
+@e:#e1e1e1;
+@dl:left;@dt:top;@db:bottom;@dr:right;
+.b(@cr:@e){
+    border: 1px solid @cr;
+}
+.m(@t:auto,@l:auto){
+    margin: @t @l;
+}
+.t{
+    transition: all .3s;
+}
+.b_dir(@cr:@e,@dir:@dl){
+    border-@{dir}: 1px solid @cr;
+}
+.m_dir(@t:10px,@dir:@dl){
+    margin-@{dir}: @t;
+}
+.fl(@dir:@dl){
+    float: @dir;
+}
+#home:extend(.t){
+    .w();
+    .m(@t:0);
+    @dir:left;
+    /*background: url(images/timg.jpg) no-repeat;*/
+    background-size:100% auto;
+    transition: all .6s;
+    overflow: auto;
+    .shade{
+        
+    }
+}
+.shade{
+    width: 80%;
+    height: 200px;
+    
+}
