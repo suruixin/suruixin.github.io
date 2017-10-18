@@ -24,16 +24,20 @@
 .fl(@dir:@dl){
     float: @dir;
 }
-#home:extend(.t){
+#home{
     .w();
+    .h(100%);
     .m(@t:0);
+    position: absolute;
     @dir:left;
-    /*background: url(images/timg.jpg) no-repeat;*/
-    background-size:100% auto;
-    transition: all .6s;
+    background-repeat: no-repeat;
+    background-size: cover;
     overflow: auto;
-    .shade{
-        
+    .banner>ul{
+        height: 950px;
+        background: #ccc;
+        width: 100%;
+        margin-bottom: 400px;
     }
 }
 .shade{
