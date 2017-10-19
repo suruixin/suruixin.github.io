@@ -6,9 +6,10 @@ Vue.component('banner',{
 	+'<ul></ul>'
 	+'</div>',
 	created:function(){//生成前
+		console.log(this.$el)
 	},
 	mounted:function(){//生成后
-		$(this.$el).height($(this.$el).parent().height()*3);
+		$(this.$el).children().css({height:window.innerHeight});
 	},
 	methods:{
 		wheel:function(e){
@@ -31,7 +32,8 @@ Vue.component('banner',{
 			}
 		},
 		hover:function(e){
-			var x = 
+//			window.setTimeout(function(){console.log(e)},100)
+//			console.log(this)
 		}
 	}
 })
