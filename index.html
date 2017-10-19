@@ -7,18 +7,31 @@
 </head>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/index.css" />
+<style>
+	canvas{
+		width: 400px;
+		height: 800px;
+		background: url(images/1.jpg);
+	}
+</style>
 <body>
 	<!--<div id="home">
 		<banner></banner>
 	</div>-->
-	<a href="images/timg.jpg" download="download">下载</a>
+	<span uid = "foo">1111</span>
+	<button id="btn" data-clipboard-target="[uid='foo']">
+		btn
+	</button>
 </body>	
 <script src="js/lib/jquery.js"></script>
+<script src="js/lib/vue.min.js"></script>
+<!--<script src="js/index.js"></script>-->
+<script src="js/clipboard.min.js"></script>
 <script>
-	$('.a').on('click',function(){
+	var clone = new Clipboard('#btn');
+	clone.on('click',function(e){
+		console.log(e)
 	})
 </script>
-<script src="js/lib/vue.min.js"></script>
-<script src="js/index.js"></script>
 <!--<script src="js/method/hover.js"></script>-->
 </html>
