@@ -19,7 +19,7 @@
 		<banner></banner>
 	</div>-->
 	<!-- Target -->
-    <span id="foo">1111</span>
+    <span id="foo">222</span>
  
     <!-- Trigger -->
     <button class="btn" data-clipboard-target="#foo">复制</button>
@@ -34,9 +34,10 @@
     clipboard.on('success', function(e) {
         alert('复制成功!')
         e.clearSelection();
+        document.execCommand(copy)
     });
     clipboard.on('error', function(e) {
-        alert('请选择“拷贝”进行复制!')
+        document.execCommand(copy)
     });
 </script>
 <!--<script src="js/method/hover.js"></script>-->
