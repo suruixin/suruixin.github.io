@@ -18,8 +18,8 @@
 	<!--<div id="home">
 		<banner></banner>
 	</div>-->
-	<span uid = "foo">2222</span>
-	<button id="btn" >
+	<span uid = "foo">xxxx</span>
+	<button id="btn" data-clipboard-target="[uid='foo']">
 		btn
 	</button>
 </body>	
@@ -28,23 +28,7 @@
 <!--<script src="js/index.js"></script>-->
 <script src="js/clipboard.min.js"></script>
 <script>
-	var clipboard = new Clipboard('#btn', {
-    	target: function(trigger) {
-	        return trigger.previousElementSibling;
-	    }
-    });
-	clipboard.on('success', function(e) {
-	    console.info('Action:', e.action);
-	    console.info('Text:', e.text);
-	    console.info('Trigger:', e.trigger);
-	    e.clearSelection();
-		alert('复制成功',e.text)
-	});
-	
-	clipboard.on('error', function(e) {
-	    console.error('Action:', e.action);
-	    console.error('Trigger:', e.trigger);
-	});
+	var clipboard = new Clipboard('#btn');
 </script>
 <!--<script src="js/method/hover.js"></script>-->
 </html>
