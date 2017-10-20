@@ -18,17 +18,26 @@
 	<!--<div id="home">
 		<banner></banner>
 	</div>-->
-	<span uid = "foo">xxxx</span>
-	<button id="btn" data-clipboard-target="[uid='foo']">
-		btn
-	</button>
+	<!-- Target -->
+    <input id="foo"  value="http://www.968309.com/mobile.php">
+ 
+    <!-- Trigger -->
+    <button class="btn" data-clipboard-target="#foo">复制</button>
 </body>	
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vue.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <script src="js/clipboard.min.js"></script>
 <script>
-	var clipboard = new Clipboard('#btn');
+	var clipboard = new Clipboard('.btn');
+    //优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
+    clipboard.on('success', function(e) {
+        alert('复制成功!')
+        e.clearSelection();
+    });
+    clipboard.on('error', function(e) {
+        alert('请选择“拷贝”进行复制!')
+    });
 </script>
 <!--<script src="js/method/hover.js"></script>-->
 </html>
