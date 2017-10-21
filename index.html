@@ -13,35 +13,28 @@
 		height: 800px;
 		background: url(images/1.jpg);
 	}
+	#box{
+		width: 500px;
+		height: 400px;
+		background: red;
+		position: absolute;
+		top: 200px;
+	}
 </style>
 <body>
-	<!--<div id="home">
-		<banner></banner>
-	</div>-->
-	<!-- Target -->
-    <span >222</span>
- 	<input id="foo" type="text" value="33333333333333"/>
-    <!-- Trigger -->
-    <button class="btn" data-clipboard-target="#foo">复制</button>
-    
-    <div id="c" onclick="a()">111</div>
+	<div id="box"></div>
+	<button>左</button><button>右</button>
 </body>	
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vue.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <script src="js/clipboard.min.js"></script>
-<script src="http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
 <script>
-	dd.device.notification.alert({
-	    message: "亲爱的",
-	    title: "提示",//可传空
-	    buttonName: "收到",
-	    onSuccess : function() {
-	        //onSuccess将在点击button之后回调
-	        /*回调*/
-	    },
-	    onFail : function(err) {}
-	});
+	$('button').on('click',function(){
+		$('#box').animate({'left':-$('#box').width(),right:$('#box').width()},600,function(){
+			$('#box').css({'left':7,right:7})
+		})
+	})
 </script>
 <!--<script src="js/method/hover.js"></script>-->
 </html>
