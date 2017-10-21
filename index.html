@@ -23,22 +23,25 @@
  	<input id="foo" type="text" value="33333333333333"/>
     <!-- Trigger -->
     <button class="btn" data-clipboard-target="#foo">复制</button>
+    
+    <div id="c" onclick="a()">111</div>
 </body>	
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vue.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <script src="js/clipboard.min.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
 <script>
-	var clipboard = new Clipboard('.btn');
-    //优雅降级:safari 版本号>=10,提示复制成功;否则提示需在文字选中后，手动选择“拷贝”进行复制
-    clipboard.on('success', function(e) {
-        alert('复制成功!')
-        e.clearSelection();
-        document.execCommand(copy)
-    });
-    clipboard.on('error', function(e) {
-        document.execCommand(copy)
-    });
+	dd.device.notification.alert({
+	    message: "亲爱的",
+	    title: "提示",//可传空
+	    buttonName: "收到",
+	    onSuccess : function() {
+	        //onSuccess将在点击button之后回调
+	        /*回调*/
+	    },
+	    onFail : function(err) {}
+	});
 </script>
 <!--<script src="js/method/hover.js"></script>-->
 </html>
