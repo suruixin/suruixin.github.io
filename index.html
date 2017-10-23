@@ -8,13 +8,27 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/index.css" />
 <body>
-	<banner></banner>
+	<!--<banner></banner>-->
+<div id="a1"></div>
+<script type="text/javascript" src="ckplayer/ckplayer.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var flashvars={
+        f:'http://movie.ks.js.cn/flv/other/1_0.mp4',
+        c:0,
+        loaded:'loadedHandler'
+    };
+    var video=['http://movie.ks.js.cn/flv/other/1_0.mp4->video/mp4'];
+    CKobject.embed('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',false,flashvars,video);
+</script>
 </body>	
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vue.min.js"></script>
 <!--<script src="js/index.js"></script>-->
 <script src="http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
-<script>
+
+
+
+<!--<script>
 	dd.config({
 	    agentId: '132635721', // 必填，微应用ID
 	    corpId: 'ding2940828292397ff935c2f4657eb6378f',//必填，企业ID
@@ -50,5 +64,5 @@
 		    }
 		});
 	});
-</script>
+</script>-->
 </html>
