@@ -15,7 +15,6 @@
 <!--<script src="js/index.js"></script>-->
 <script src="http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
 <script>
-	alert(dd)
 	dd.config({
 	    agentId: '132635721', // 必填，微应用ID
 	    corpId: 'ding2940828292397ff935c2f4657eb6378f',//必填，企业ID
@@ -23,12 +22,22 @@
 	    nonceStr: '59ed8add5ad28', // 必填，生成签名的随机串
 	    signature: '3f7e12c3d0c54e3cb4d327a3eb97e7c2607bb6ec', // 必填，签名
 	    type:0,   //选填。0表示微应用的jsapi,1表示服务窗的jsapi。不填默认为0。该参数从dingtalk.js的0.8.3版本开始支持
-	    jsApiList : [ 'runtime.info', 'biz.contact.choose',
-	        'device.notification.confirm', 'device.notification.alert',
-	        'device.notification.prompt', 'biz.ding.post',
-	        'biz.util.openLink' ] // 必填，需要使用的jsapi列表，注意：不要带dd。
+	    jsApiList: [
+			'runtime.info',
+			'device.notification.prompt',
+			'biz.chat.pickConversation',
+			'device.notification.confirm',
+			'device.notification.alert',
+			'device.notification.prompt',
+			'biz.util.open',
+			'biz.clipboardData.setData',
+			'biz.user.get',
+			'biz.navigation.goBack',
+			'biz.util.downloadFile',
+		] // 必填，需要使用的jsapi列表，注意：不要带dd。
 	});
 	dd.ready(function(){
+		alert(dd)
 	    dd.device.notification.alert({
 		    message: "测试",
 		    title: "提示",//可传空
