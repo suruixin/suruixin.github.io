@@ -8,63 +8,11 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/index.css" />
 <body>
-	<!--<banner></banner>-->
-<div id="a1"></div>
-<a href="/images/2.mp4" download="/images/2.mp4">111111</a>
-<script type="text/javascript" src="ckplayer/ckplayer.js" charset="utf-8"></script>
-<script type="text/javascript">
-    var flashvars={
-        f:'http://movie.ks.js.cn/flv/other/1_0.mp4',
-        c:0,
-        loaded:'loadedHandler'
-    };
-    var video=['http://movie.ks.js.cn/flv/other/1_0.mp4->video/mp4'];
-    
-    CKobject.embed('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',false,flashvars,video);
-</script>
+<div id="home">
+	<banner></banner>
+</div>
 </body>	
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/vue.min.js"></script>
-<!--<script src="js/index.js"></script>-->
-<script src="http://g.alicdn.com/dingding/open-develop/1.6.9/dingtalk.js"></script>
-
-
-
-<!--<script>
-	dd.config({
-	    agentId: '132635721', // 必填，微应用ID
-	    corpId: 'ding2940828292397ff935c2f4657eb6378f',//必填，企业ID
-	    timeStamp: Date.parse(new Date()), // 必填，生成签名的时间戳
-	    nonceStr: '59ed8add5ad28', // 必填，生成签名的随机串
-	    signature: '3f7e12c3d0c54e3cb4d327a3eb97e7c2607bb6ec', // 必填，签名
-	    type:0,   //选填。0表示微应用的jsapi,1表示服务窗的jsapi。不填默认为0。该参数从dingtalk.js的0.8.3版本开始支持
-	    jsApiList: [
-			'runtime.info',
-			'device.notification.prompt',
-			'biz.chat.pickConversation',
-			'device.notification.confirm',
-			'device.notification.alert',
-			'device.notification.prompt',
-			'biz.util.open',
-			'biz.clipboardData.setData',
-			'biz.user.get',
-			'biz.navigation.goBack',
-			'biz.util.downloadFile',
-		] // 必填，需要使用的jsapi列表，注意：不要带dd。
-	});
-	dd.ready(function(){
-		alert(dd)
-	    dd.device.notification.alert({
-		    message: "测试",
-		    title: "提示",//可传空
-		    buttonName: "ok",
-		    onSuccess : function() {
-		        alert('succee')
-		    },
-		    onFail : function(err) {
-		    	alert('err:'+JSON.stringify(err))
-		    }
-		});
-	});
-</script>-->
+<script src="js/index.js"></script>
 </html>

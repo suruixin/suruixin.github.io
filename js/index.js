@@ -1,15 +1,17 @@
 //组件
 Vue.component('banner',{
-	template:'<div v-on:wheel="wheel" @mousemove="hover" class="banner">'
-	+'<ul></ul>'
-	+'<ul></ul>'
-	+'<ul></ul>'
+	template:'<div @wheel="wheel" class="banner">'
+		+'<ul></ul>'
+		+'<div @mousemove="hover"></div>'
+		+'<ul></ul>'
+		+'<div @mousemove="hover"></div>'
+		+'<ul></ul>'
 	+'</div>',
 	created:function(){//生成前
 		console.log(this.$el)
 	},
 	mounted:function(){//生成后
-		$(this.$el).children().css({height:window.innerHeight});
+		$(this.$el).children('ul').css({height:window.innerHeight});this.oy = 0; this.ox = 0;
 	},
 	methods:{
 		wheel:function(e){
@@ -32,8 +34,17 @@ Vue.component('banner',{
 			}
 		},
 		hover:function(e){
-//			window.setTimeout(function(){console.log(e)},100)
-//			console.log(this)
+			var nx = e.clientX, ny = e.clientY
+			var x = $(this.$el).closest('#home').css('background-position-x').split('%')[0].split('p')[0]*1;
+			var y = $(this.$el).closest('#home').css('background-position-y').split('%')[0];
+			if(this.ox != 0&&nx > this.ox){
+				console.log(this.ox,nx,x)
+				$(this.$el).closest('#home').css('background-position-x',(x+0.2))
+			}else if(this.ox != 0&&nx < this.ox){
+				$(this.$el).closest('#home').css('background-position-x',(x-0.2))
+			}
+			this.ox = nx;
+			this.oy = ny;
 		}
 	}
 })
@@ -57,9 +68,9 @@ var vue = new Vue({
 		var that = this;
 		$(this.$el).scroll(function(){
 			var y = $(this).scrollTop();
-			$(this).children().children().each(function(){
+			$(this).children().children('ul').each(function(i){
 				if($(this).offset().top + $(this).css('margin-bottom').split('p')[0]<10){
-					$(that.$el).css({'backgroundImage':'url("images/'+($(this).index()+1)+'.jpg")'});
+					$(that.$el).css({'backgroundImage':'url("images/'+(i+1)+'.jpg")'});
 				}
 			})
 		})
