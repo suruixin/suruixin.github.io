@@ -19,6 +19,7 @@
 			background: rgba(0,0,0,.3);
 			overflow-y: auto;
 			overflow-x: hidden;
+			-webkit-overflow-scrolling : touch;
 		}
 		ul{
 			width: 100%;
@@ -56,51 +57,69 @@
 		}
 		li{
 			height: 200px;
-			background: url(../images/1.jpg);
 			margin-bottom: 5px;
+		}
+		.li{
+			background: url(../images/1.jpg);
 		}
 	</style>
 	<body>
 		<div>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li class="li"></li>
+				<li class="li"></li>
+				<li class="li"></li>
+				<li class="li"></li>
+				<li class="li"></li>
 			</ul>
 			<!--<label><span>加载中...</span></label>-->
 		</div>
 	</body>
 <script src="../js/lib/jquery.js"></script>
 <script>
-	function pull_end(){
-		$('.animate').remove();
-		flag = true;
+	function pull_end(obj){
+		var type = obj.type||'replace'
+		$.get('../json/data.json',function(data){
+			var html = '';
+			if(obj.type == 'append'){
+				$.each(data,function(n,e){
+					$('<li>').data({'url':e.url}).attr('name','hide').appendTo('ul');
+				})
+			}else{
+				$.each(data,function(n,e){
+					html += '<li data-url="'+e.url+'" name = "hide"></li>'
+				})
+				$('ul').html(html);
+			}
+			$('.animate').remove();
+			flag = true;
+		})
 	}
 	var flag = true;
 	$('div').on('touchstart',function(e){
-		var nh = $(this).height(),i = 0;
+		var nh = $(this).height(),i = 0 , st = $(this).scrollTop();
 		var ot = e.originalEvent.changedTouches[0].clientY;
+		var arr = [], num = 0;
+		$('li[name="hide"]').each(function(){
+			arr.push($(this).offset().top);
+			$(this).attr('pull',$(this).offset().top)
+		})
 		$(this).on('touchmove',function(e){
+			if($(this).scrollTop() - st + nh >= arr[num]&&$('[pull="'+arr[num]+'"]').attr('name')=='hide'){
+				console.log(num)
+				var obj = $('[pull="'+arr[num]+'"]')
+				obj.css({'background':'url('+(obj.data('url'))+')'})
+				num++;
+				obj.attr('name','show')
+			}
 			var nt = e.originalEvent.changedTouches[0].clientY;
-			if($(this).scrollTop()<=0&&nt - 15 > ot){
+			if($(this).scrollTop() <= 0&&nt - 15 > ot){
 				i++;
 				if(i> 100){
-					i = 100
+					i = 100;
 				}
 				if(flag == true){
-					flag = false
+					flag = false;
 					$('ul').before('<label class="animate_top animate"><i class="icon">&#xe600;</i></label>');
 				}
 				$('.animate_top').height(i);
@@ -112,29 +131,15 @@
 					flag = false;
 					$('ul').after('<label class="animate_bottom animate"><span>加载中</span></label>')
 					$('.animate_bottom').animate({height:40},300);
-					$.get('../json/data.json',function(data){
-						$.each(data,function(n,e){
-							$('<li>').css('background','url("'+e.url+'")').appendTo('ul');
-						})
-						pull_end();
-					})
+					pull_end({type:'append'});
 				}
 			}
 		})
 		$(this).on('touchend',function(){
 			$(this).off('touchmove touchend');
-			console.log($('.animate_top').height())
 			if($('.animate_top').height() > 0){
-				$.get('../json/data.json',function(data){
-					var html = '';
-					$.each(data,function(n,e){
-						html += '<li style="background:url('+e.url+')"></li>'
-					})
-					$('ul').html(html);
-					pull_end();
-				})
+				pull_end({type:'replace'})
 			}
-			
 		})
 	})
 </script>
