@@ -9,16 +9,16 @@
 	<style type="text/css">
 		body,html{
 			width: 100%;
-			height: 100%;
+			/*height: 100%;*/
 			margin: 0;
 			position: relative;
 		}
 		div{
-			height: 100%;
+			/*height: 100%;*/
 			width: 100%;
 			background: rgba(0,0,0,.3);
-			overflow-y: auto;
-			overflow-x: hidden;
+			/*overflow-y: auto;
+			overflow-x: hidden;*/
 			-webkit-overflow-scrolling : touch;
 		}
 		ul{
@@ -77,20 +77,21 @@
 	</body>
 <script src="../js/lib/jquery.js"></script>
 <script>
-	function pull_end(obj){
-		var type = obj.type||'replace'
+function pullUp(obj){
+	function pull_end(pull){
+		var type = pull.type||'replace'
 		$.get('../json/data.json',function(data){
 			var html = '';
-			if(obj.type == 'append'){
+			if(pull.type == 'append'){
 				$.each(data,function(n,e){
-					$('<li>').data({'url':e.url}).attr('name','hide').appendTo('ul');
+					$('<li>').data({'url':e.url}).attr('name','hide').appendTo(obj.parent);
 				})
 				
 			}else{
 				$.each(data,function(n,e){
 					html += '<li data-url="'+e.url+'" name = "hide"></li>'
 				})
-				$('ul').html(html);
+				$(obj.parent).html(html);
 			}
 			$('.animate').remove();
 			flag = true;
@@ -108,12 +109,13 @@
 		$(this).on('touchmove',function(e){
 			if($(this).scrollTop() - st + nh >= arr[num]&&$('[pull="'+arr[num]+'"]').attr('name')=='hide'){
 				console.log(num)
-				var obj = $('[pull="'+arr[num]+'"]')
-				obj.css({'background':'url('+(obj.data('url'))+')'})
+				var img = $('[pull="'+arr[num]+'"]')
+				img.css({'background':'url('+(img.data('url'))+')'})
 				num++;
-				obj.attr('name','show')
+				img.attr('name','show')
 			}
 			var nt = e.originalEvent.changedTouches[0].clientY;
+			console.log(obj)
 			if($(this).scrollTop() <= 0&&nt - 15 > ot){
 				i++;
 				if(i> 100){
@@ -121,16 +123,16 @@
 				}
 				if(flag == true){
 					flag = false;
-					$('ul').before('<label class="animate_top animate"><i class="icon">&#xe600;</i></label>');
+					$(obj.parent).before('<label class="animate_top animate"><i class="icon">&#xe600;</i></label>');
 				}
 				$('.animate_top').height(i);
 				if($('.animate_top').height()>=10){
 					$('.animate_top').children('i').css('display','block');
 				}
-			}else if($(this).scrollTop() + nh >= $(this).children('ul').height()){
+			}else if($(this).scrollTop() + nh >= $(this).find(obj.parent).height()){
 				if(flag == true){
 					flag = false;
-					$('ul').after('<label class="animate_bottom animate"><span>加载中</span></label>')
+					$(obj.parent).after('<label class="animate_bottom animate"><span>加载中</span></label>')
 					$('.animate_bottom').animate({height:40},300);
 				}
 			}
@@ -139,10 +141,15 @@
 			$(this).off('touchmove touchend');
 			if($('.animate_top').height() > 0){
 				pull_end({type:'replace'})
-			}else if($(this).scrollTop() + nh >= $(this).children('ul').height()){
+			}else if($(this).scrollTop() + nh >= $(this).find(obj.parent).height()){
 				pull_end({type:'append'});
 			}
 		})
 	})
+}
+
+pullUp({
+	parent:'ul'
+})
 </script>
 </html>
