@@ -85,6 +85,7 @@
 				$.each(data,function(n,e){
 					$('<li>').data({'url':e.url}).attr('name','hide').appendTo('ul');
 				})
+				
 			}else{
 				$.each(data,function(n,e){
 					html += '<li data-url="'+e.url+'" name = "hide"></li>'
@@ -131,7 +132,6 @@
 					flag = false;
 					$('ul').after('<label class="animate_bottom animate"><span>加载中</span></label>')
 					$('.animate_bottom').animate({height:40},300);
-					pull_end({type:'append'});
 				}
 			}
 		})
@@ -139,6 +139,8 @@
 			$(this).off('touchmove touchend');
 			if($('.animate_top').height() > 0){
 				pull_end({type:'replace'})
+			}else if($(this).scrollTop() + nh >= $(this).children('ul').height()){
+				pull_end({type:'append'});
 			}
 		})
 	})
