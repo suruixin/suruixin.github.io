@@ -86,11 +86,11 @@
 <script>
 	function pull_end(){
 		$('.animate').remove();
+		flag = true;
 	}
-	
+	var flag = true;
 	$('div').on('touchstart',function(e){
 		var nh = $(this).height(),i = 0;
-		var flag = true;
 		var ot = e.originalEvent.changedTouches[0].clientY;
 		$(this).on('touchmove',function(e){
 			var nt = e.originalEvent.changedTouches[0].clientY;
@@ -116,7 +116,6 @@
 						$.each(data,function(n,e){
 							$('<li>').css('background','url("'+e.url+'")').appendTo('ul');
 						})
-						flag_data = true;
 						pull_end();
 					})
 				}
