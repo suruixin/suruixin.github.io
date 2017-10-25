@@ -21,25 +21,30 @@
 			overflow-x: hidden;
 		}
 		ul{
-			height: 3000px;
 			width: 100%;
 			background: rgba(255,255,255,.3);
-			margin: 0;
+			margin: 0;padding: 0;
+			list-style: none;
 		}
-		label{
+		.animate{
 			display: block;
 			width: 100%;
 			height: 0;
 			color: #e1e1e1;
 			text-align: center;
 			line-height: 40px;
+			background: #f1f1f1;
 		}
 		@keyframes rotates{
 			0{transform:rotate(0deg);}
 			100%{transform:rotate(360deg)}
 		}
-		label i{
+		.animate_top i{
 			font-style: normal;
+			position: fixed;
+			top: 10px;
+			width: 100%;
+			text-align: center;
 			display: none;
 			color: #1296DB;
 			animation-name: rotates;
@@ -49,29 +54,88 @@
 			animation-direction: normal;
 			animation-play-state: running;
 		}
+		li{
+			height: 200px;
+			background: url(../images/1.jpg);
+			margin-bottom: 5px;
+		}
 	</style>
 	<body>
 		<div>
-			<label><i class="icon">&#xe600;</i></label>
-			<ul></ul>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<!--<label><span>加载中...</span></label>-->
 		</div>
 	</body>
 <script src="../js/lib/jquery.js"></script>
 <script>
+	function pull_end(){
+		$('.animate').remove();
+	}
+	
 	$('div').on('touchstart',function(e){
 		var nh = $(this).height(),i = 0;
+		var flag = true;
+		var ot = e.originalEvent.changedTouches[0].clientY;
 		$(this).on('touchmove',function(e){
-			if($(this).scrollTop()<=0){
+			var nt = e.originalEvent.changedTouches[0].clientY;
+			if($(this).scrollTop()<=0&&nt - 15 > ot){
 				i++;
-				$('label').height(i);
-				if($('label').height()>=10){
-					$('label').children().css('display','block');
+				if(i> 100){
+					i = 100
+				}
+				if(flag == true){
+					flag = false
+					$('ul').before('<label class="animate_top animate"><i class="icon">&#xe600;</i></label>');
+				}
+				$('.animate_top').height(i);
+				if($('.animate_top').height()>=10){
+					$('.animate_top').children('i').css('display','block');
+				}
+			}else if($(this).scrollTop() + nh >= $(this).children('ul').height()){
+				if(flag == true){
+					flag = false;
+					$('ul').after('<label class="animate_bottom animate"><span>加载中</span></label>')
+					$('.animate_bottom').animate({height:40},300);
+					$.get('../json/data.json',function(data){
+						$.each(data,function(n,e){
+							$('<li>').css('background','url("'+e.url+'")').appendTo('ul');
+						})
+						flag_data = true;
+						pull_end();
+					})
 				}
 			}
 		})
 		$(this).on('touchend',function(){
 			$(this).off('touchmove touchend');
-			$('label').height(0).children().hide();
+			console.log($('.animate_top').height())
+			if($('.animate_top').height() > 0){
+				$.get('../json/data.json',function(data){
+					var html = '';
+					$.each(data,function(n,e){
+						html += '<li style="background:url('+e.url+')"></li>'
+					})
+					$('ul').html(html);
+					pull_end();
+				})
+			}
+			
 		})
 	})
 </script>
