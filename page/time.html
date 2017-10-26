@@ -1,49 +1,21 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>laydate</title>
-	</head>
-	<style>
-		.div{
-			width: 120px;
-			height: 30px;
-			border: 1px solid #e1e1e1;
-		}
-		img{
-			width: 200px;
-			height: 100px;
-		}
-	</style>
-	<body>
-		<div id="test" class="div"></div>
-		<div id="test2" class="div"></div>
-		<button>1111</button>
-		<a href="../images/2.jpg"><img href="../images/2.jpg" width="100px" height="100px"></a>
-		<a href="../images/3.jpg"><img href="../images/3.jpg" width="100px" height="100px"></a>
-	</body>
-	<script src="../js/lib/jquery.js"></script>
-	<script src="../js/lib/laydate/laydate.js"></script>
-	<script>
-		var val = {};
-		var a = { 
-		  elem: '#test'
-		  ,type: 'datetime'
-		  ,done: function(value, date, endDate){
-		  	b.min = value
-		  }
-		};
-		var b = { 
-		  elem: '#test2'
-		  ,type: 'datetime'
-		  ,ready:function(){
-		  }
-		  ,done: function(value, date, endDate){
-		  		a.max = value;
-//		  		console.log(laydate.render(a))
-		  }
-		};
-		laydate.render(a)
-		laydate.render(b)
-	</script>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/layer/layer.js"></script>
+<script>
+	$.get('../json/layer.json',function(data){
+		console.log(data)
+		layer.photos({
+		    photos: data //格式见API文档手册页
+		    ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+	  	});
+	})
+</script>
 </html>
