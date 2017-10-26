@@ -9,16 +9,16 @@
 	<style type="text/css">
 		body,html{
 			width: 100%;
-			/*height: 100%;*/
+			height: 100%;
 			margin: 0;
 			position: relative;
 		}
 		div{
-			/*height: 100%;*/
+			height: 100%;
 			width: 100%;
 			background: rgba(0,0,0,.3);
-			/*overflow-y: auto;
-			overflow-x: hidden;*/
+			overflow-y: auto;
+			overflow-x: hidden;
 			-webkit-overflow-scrolling : touch;
 		}
 		ul{
@@ -77,32 +77,36 @@
 	</body>
 <script src="../js/lib/jquery.js"></script>
 <script>
+
+function pull_end(pull){
+	var type = pull.type||'replace';
+	$.get('../json/data.json',function(data){
+		var html = '';
+		if(type == 'append'){
+			$.each(data,function(n,e){
+				$('<li>').data({'url':e.url}).attr('name','hide').appendTo(pull.parent);
+			})
+			
+		}else{
+			$.each(data,function(n,e){
+				html += '<li data-url="'+e.url+'" name = "hide"></li>'
+			})
+			$(pull.parent).html(html);
+		}
+		$('.animate').remove();
+		flag = true;
+//		$(pull.parent).
+	})
+}
+
+
 function pullUp(obj){
-	function pull_end(pull){
-		var type = pull.type||'replace'
-		$.get('../json/data.json',function(data){
-			var html = '';
-			if(pull.type == 'append'){
-				$.each(data,function(n,e){
-					$('<li>').data({'url':e.url}).attr('name','hide').appendTo(obj.parent);
-				})
-				
-			}else{
-				$.each(data,function(n,e){
-					html += '<li data-url="'+e.url+'" name = "hide"></li>'
-				})
-				$(obj.parent).html(html);
-			}
-			$('.animate').remove();
-			flag = true;
-		})
-	}
 	var flag = true;
-	$('div').on('touchstart',function(e){
+	$(obj.box).on('touchstart',function(e){
 		var nh = $(this).height(),i = 0 , st = $(this).scrollTop();
 		var ot = e.originalEvent.changedTouches[0].clientY;
 		var arr = [], num = 0;
-		$('li[name="hide"]').each(function(){
+		$(obj.pull+'[name="hide"]').each(function(){
 			arr.push($(this).offset().top);
 			$(this).attr('pull',$(this).offset().top)
 		})
@@ -115,7 +119,6 @@ function pullUp(obj){
 				img.attr('name','show')
 			}
 			var nt = e.originalEvent.changedTouches[0].clientY;
-			console.log(obj)
 			if($(this).scrollTop() <= 0&&nt - 15 > ot){
 				i++;
 				if(i> 100){
@@ -140,16 +143,18 @@ function pullUp(obj){
 		$(this).on('touchend',function(){
 			$(this).off('touchmove touchend');
 			if($('.animate_top').height() > 0){
-				pull_end({type:'replace'})
+				pull_end({type:'replace',parent:obj.parent})
 			}else if($(this).scrollTop() + nh >= $(this).find(obj.parent).height()){
-				pull_end({type:'append'});
+				pull_end({type:'append',parent:obj.parent});
 			}
 		})
 	})
 }
 
 pullUp({
-	parent:'ul'
+	parent:'ul',
+	box:'div',
+	pull: 'li'
 })
 </script>
 </html>
