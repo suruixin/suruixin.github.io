@@ -582,7 +582,7 @@
       if(!options.range && i > 0){
         return true;
       }
-
+		
       //头部区域
       var divHeader = lay.elem('div', {
         'class': 'layui-laydate-header'

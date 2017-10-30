@@ -66,11 +66,12 @@ var vue = new Vue({
 	},
 	mounted:function(){
 		var that = this;
-		$(this.$el).scroll(function(){
+		$(document).scroll(function(){
+			console.log($(this).scrollTop())
 			var y = $(this).scrollTop();
-			$(this).children().children('ul').each(function(i){
-				if($(this).offset().top + $(this).css('margin-bottom').split('p')[0]<10){
-					$(that.$el).css({'backgroundImage':'url("images/'+(i+1)+'.jpg")'});
+			$('.banner').children('ul').each(function(i){
+				if(y > $(this).height()+$(this).offset().top){
+					$(this).parent('.banner').css({'background-image':'url("../images/'+(i+1)+'.jpg")'})
 				}
 			})
 		})

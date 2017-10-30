@@ -13,47 +13,54 @@
 </style>
 <body>
 	<ul>
-		<li><img src="../images/1.jpg" alt="" /></li>
-		<li><img src="../images/2.jpg" alt="" /></li>
-		<li><img src="../images/3.jpg" alt="" /></li>
+		<li><img src="../images/1.jpg" alt="" layer-src="../images/timg.jpg" /><span>1111</span> <button >btn</button></li>
+		<li><img src="../images/2.jpg" alt="" layer-src="../images/timg.jpg" /><span>2111</span> <button >btn</button></li>
+		<li><img src="../images/3.jpg" alt="" layer-src="../images/timg.jpg" /><span>3111</span> <button >btn</button></li>
 	</ul>
 </body>
 <script src="../js/lib/jquery.js"></script>
 <script src="../js/lib/layer/layer.js"></script>
+<script src="../js/lib/touch.min.js"></script>
+<script src="../js/clipboard.min.js"></script>
 <script>
-//	$.get('../json/layer.json',function(data){
-//		console.log(data)
-//		layer.photos({
-//		    photos: data //格式见API文档手册页
-//		    ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机
-//	  	});
-//	})
+	new Clipboard('button', {
+	    target: function(trigger) {
+	    	layer.msg('复制成功');
+	        return $(trigger).siblings('span').get(0)
+	    }
+	});
 	layer.photos({
 	  photos: 'ul'
-	  ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+	  ,anim: 5
 	});
-	$('body').on('touchstart','.layui-layer-photos',function(e){
-	    var _sx = e.originalEvent.changedTouches[0].pageX;
-	    var _i = 0;
-	    var _l = $(this).css('left').split('p')[0]*1;
-	    $(this).on("touchmove", function(e) {
-	    	e.preventDefault();
-	    	_x = e.originalEvent.changedTouches[0].pageX - _sx;
-	    	$(this).css({'left':(_l+_x)})
-	    })
-	    $(this).on('touchend',function(e){
-	    	e.preventDefault();
-	    	$(this).off('touchend touchmove');
-	    	var _nx = e.originalEvent.changedTouches[0].pageX;
-	    	if(_nx == _sx){
-	    		$('.layui-layer-shade').css('z-index',999999999999999).click()
-	    	}else if(_nx < _sx){
-	    		$('.layui-layer-imgnext').click()
-	    	}else{
-	    		$('.layui-layer-imgprev').click()
-	    	}
-	    })
+	touch.on('ul','dragstart',function(e){
+		console.log(e)
 	})
+	
+//	$('body').on('touchstart','.layui-layer-photos',function(e){
+//	    var _sx = e.originalEvent.changedTouches[0].pageX;
+//	    var _i = 0;
+//	    var _l = $(this).css('left').split('p')[0]*1;
+//	    $(this).on("touchmove", function(e) {
+//	    	e.preventDefault();
+//	    	_x = e.originalEvent.changedTouches[0].pageX - _sx;
+//	    	$(this).css({'left':(_l+_x)})
+//	    })
+//	    $(this).on('touchend',function(e){
+//	    	e.preventDefault();
+//	    	$(this).off('touchend touchmove');
+//	    	var _nx = e.originalEvent.changedTouches[0].pageX;
+//	    	if(_nx == _sx){
+//	    		$('.layui-layer-shade').click()
+//	    	}else if(_nx < _sx-$(this).width()/3){
+//	    		$('.layui-layer-imgnext').click()
+//	    	}else if(_nx > _sx+$(this).width()/3){
+//	    		$('.layui-layer-imgprev').click()
+//	    	}else{
+//	    		$(this).css({left:_l})
+//	    	}
+//	    })
+//	})
 	
 </script>
 </html>

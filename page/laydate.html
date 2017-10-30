@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" class="one"/>
+		<input type="text" class="two"/>
+	</body>
+	<script src="../js/lib/jquery.js"></script>
+	<script src="../js/lib/laydate/laydate.min.js"></script>
+	<script >
+		var start = laydate.render({
+			elem:'.one',
+			min:'2017-10-02',
+			max:'2099-12-31',
+			done:function(v,e){
+				e.month = e.month - 1;
+				end.config.min = e
+			}
+		});
+		
+		var end = laydate.render({
+			elem:'.two',
+			min:'2017-10-02',
+			max:'2099-12-31',
+			done:function(v,e){
+				e.month = e.month - 1;
+				start.config.max = e
+			}
+		})
+	</script>
+</html>

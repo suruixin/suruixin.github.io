@@ -24,20 +24,16 @@
 .fl(@dir:@dl){
     float: @dir;
 }
-body{
+body,html{
     height: 100%;
     width: 100%;
-    position: absolute;
 }
 #home{
     .w();
     .h(100%);
     .m(@t:0);
-    position: absolute;
-    @dir:left;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: auto;
     .banner>ul{
         background: #ccc;
         width: 100%;
