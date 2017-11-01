@@ -17,16 +17,39 @@
 </ul>
 <ul class="activity-content">
 	<li class="activity-content-top">
-		<div class="activity-content-date activity-content-right"></div>
-		<div class="activity-content-moner activity-shape">
-			<div class="activity-content-right"></div>
+		<div class="activity-content-date activity-content-right"></div><!--倒计时-->
+		<div class="activity-content-moner activity-shape"><!--实时报表-->
+			<div class="activity-content-right">
+				<p><span class="acticity-img"></span><span>趋势时事销售战报</span></p>
+				<label><em>￥</em><span>15000000</span></label>
+			</div>
 		</div>
-		<div class="activity-content-ranking activity-shape"></div>
+		<ul class="activity-content-ranking activity-shape"><!--排行榜-->
+			<li class="activity-content-no2">
+				<label>
+					<span>倍润清</span>
+					<span>￥7500</span>
+				</label>
+				<div>2</div>
+			</li>
+			<li class="activity-content-no1">
+				<label>
+					<span>倍润清</span>
+					<span>￥7500</span>
+				</label>
+				<div>1</div>
+			</li>
+			<li class="activity-content-no3">
+				<label>
+					<span>倍润清</span>
+					<span>￥7500</span>
+				</label>
+				<div>3</div>
+			</li>
+		</ul>
 	</li>
 	<li class="activity-content-bottom">
-		<div class="activity-content-aim activity-content-right">
-			
-		</div>
+		<div class="activity-content-aim activity-content-right"></div>
 		<div class="activity-content-table activity-shape"></div>
 	</li>
 </ul>
@@ -37,10 +60,37 @@
 	</div>
 </div>
 <div class="shade">
-	
+	<ul class="shade_content">
+		<li class="shade-top">荣誉榜</li>
+		<li class="shade-center">
+			<div class="shade-center-img"></div>
+			<p>项目组排名：<span>5</span></p>
+			<table>
+				<thead align="center">
+					<tr>
+						<th>姓名：王小五</th>
+						<th>订单数量</th>
+						<th>当前业绩</th>
+						<th>业绩完成度</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>所属项目组：倍润清组</td>
+						<td>10单</td>
+						<td>50000.00</td>
+						<td>105%</td>
+					</tr>
+				</tbody>
+			</table>
+		</li>
+		<li class='shade-bottom'>×</li>
+	</ul>
 </div>
 </body>
 <script src="js/libs/jquery.js"></script>
+<script src="js/libs/jquery.countup.min.js"></script>
+<script src="js/libs/jquery.waypoints.min.js"></script>
 <script src="js/libs/build.js"></script>
 <script src="js/index.js"></script>
 </html>
