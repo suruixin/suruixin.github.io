@@ -22,6 +22,7 @@ function formatCurrency(num) {
 var num_all = 0,//总目标
 	num_spurt = 0,//冲刺目标
 	num_acc = 0,//完成值
+	arr_mean = 0,//应完成目标总额
 	arr_ground = [],//项目组\姓名
 	arr_rate = [];//完成率
 var roll = function(roll){
@@ -56,13 +57,16 @@ roll.prototype = {
 		}).parent().width(num);
 	}
 	,slide: function(){
-		var that =this;var $t = $('.'+this.classname)
+		var that =this;var $t = $('.'+this.classname);
 		if($t.find('.pull-box').outerWidth() < $t.find('.pull-box>ul').outerWidth()){
 			//时间函数
 			function time(){
 				$t.find('.pull-box>ul').animate({'margin-left': -$t.find('.pull-box>ul').children('li').eq(0).outerWidth()},that.animatetime,function(){
 					$t.find('.pull-box>ul').children('li').eq(0).insertAfter($t.find('.pull-box>ul').children('li').eq($t.find('.pull-box>ul').children('li').length-1)).parent().css('margin-left',0)
-					if(that.btn)that.click.call(this.childNodes[0])
+					if(that.btn){
+						that.click.call(this.childNodes[0]);
+						monitor()
+					}
 				})
 			}
 			var sets = setInterval(time,this.settime);
@@ -80,12 +84,14 @@ roll.prototype = {
 			$t.find('.roll-prev').on('click',function(){//左
 				var _t = $t.find('.pull-box>ul');
 				_t.children('li').eq(_t.children('li').length-1).insertBefore(_t.children('li').eq(0)).parent().css({'margin-left': -$t.find('.pull-box>ul').children('li').eq(0).outerWidth()}).animate({'margin-left': 0},that.animatetime,function(){
-					that.click.call(this.childNodes[0])
+					that.click.call(this.childNodes[0]);
+					monitor();
 				})
 			})
 		}
 		$t.find('.pull-box>ul li').on('click',function(){
-			that.click.call(this)
+			that.click.call(this);
+			monitor();
 		})
 	}
 }
@@ -202,23 +208,22 @@ function achieve(ach){
 	var _a = $('<div>').addClass('achieve-content').appendTo(ach.parent);
 	var _b = $('<ul>').addClass('achieve-data').appendTo(ach.parent);
 	achieve_data({'keys':ach.keys,parent:_b});
-	achieve_update(_a,_b)
+	achieve_update(_a,_b);
 }
 function achieve_data(obj){
 	var html = '';
 	$.each(obj.keys,function(i,e){
-		html += '<li  data-contrase = "'+e.contrase+'"><span>'+e.name+'</span><span class="achieve-num">500000</span></li>'
+		html += '<li  data-contrase = "'+e.contrase+'" data-type="'+e.type+'"><span>'+e.name+'</span><span class="achieve-num" data-text="500000">500000</span></li>';
 	})
 	obj.parent.html(html);
 }
 function achieve_update(_a,_b){
-	var bl = (_b.children('[data-contrase=1]').find('.achieve-num').text()*1)/(_b.children('[data-contrase=2]').find('.achieve-num').text()*1);
+	var bl = (_b.children('[data-contrase=1]').find('.achieve-num').data('text')*1)/(_b.children('[data-contrase=2]').find('.achieve-num').data('text')*1);
 	_b.children().each(function(){
 		$(this).find('.achieve-num').text(formatCurrency($(this).find('.achieve-num').text()))
 	})
 	var bls = 250-bl*300< -100?-100:(250-bl*300)
 	_a.html(Math.floor(bl*100)+'%').animate({'background-position-y':bls},300);
-	console.log(_b.find('.achieve-num').countUp())
 }
 
 
@@ -233,36 +238,46 @@ function table(tab){
 	var html = '<div class="activity-table-title">'+tab.head+'</div><div class="activity-table-box"><div class="activity-table-head"><table><thead><tr>';
 	arr_ground = [];
 	$.each(tab.titlename,function(i,e){
-		html += '<th>'+e+'</th>'
+		console.log(i,e)
+		html += '<th data-type="'+e.type+'">'+e.name+'</th>'
 	})
 	html += '</tr></thead></table></div><div class="activity-table-body"><table><tbody>';
 	$.each(tab.data,function(i,e){
-		html += '<tr>'
-			$.each(e,function(n,x){
-				html += '<td>'+x+'</td>'
-			})
+		html += '<tr>';
+		$.each(e,function(n,x){
+			html += '<td>'+x+'</td>';
+		})
 		html += '</tr>'
 	})
 	html += '</tbody></table></div>'
 	$(tab.parent).html(html);
-	table_time()
+	table_time();
 }
-
+var settime ='';
 function table_time(){
-	var set_time = setInterval(a,10000);
-	function a(){
-		$('.activity-table-body tr').each(function(){
-			if(!$(this).is(':hidden')){
-				if($(this).offset().top-$(this).parent().offset().top+$(this).outerHeight()<$(this).closest('.activity-table-body').height()){
-					$(this).animate({'margin-top':100,opacity:0},600,function(){
-						$(this).css({opacity:1}).hide();
-						if($(this).index()==$(this).siblings().length){
-							$('.activity-table-body tr').show();
-						}
-					})
-				}
-			}
+	if($('.activity-table-body').children().height()>$('.activity-table-body').height()){
+		settime = setInterval(a,10000);
+		$('.activity-table-box').hover(function(){
+			clearInterval(settime);
+		},function(){
+			settime = setInterval(a,10000);
 		})
+		function a(){
+			$('.activity-table-body tr').each(function(){
+				if(!$(this).is(':hidden')){
+					if($(this).offset().top-$(this).parent().offset().top+$(this).outerHeight()<$(this).closest('.activity-table-body').height()){
+						$(this).animate({'margin-top':100,opacity:0},600,function(){
+							$(this).css({opacity:1}).hide();
+							if($(this).index()==$(this).siblings().length){
+								$('.activity-table-body tr').show();
+							}
+						})
+					}
+				}
+			})
+		}
+	}else{
+		clearInterval(settime);
 	}
 }
 
@@ -288,6 +303,69 @@ $('button').on('click',function(){
 $('.shade-bottom').on('click',function(){
 	$('.shade').hide(600);
 })
-function shadeoff(){
+
+
+
+
+//关闭事件
+function shadeoff(){//遮罩5秒后自动关闭事件
 	setTimeout(function(){$('.shade-bottom').click()},5000)
 }
+
+
+
+function monitor(){//监听事件
+	num_all = 0,//总目标
+	num_spurt = 0,//冲刺目标
+	num_acc = 0,//完成值
+	arr_mean = 0,//应完成业绩
+	arr_ground = [],//项目组\姓名
+	arr_rate = [];//完成率
+	//完成百分比左
+	//更新数值
+	$('.activity-table-body tr').each(function(i,e){
+		if(i<3){
+			arr_ground.push($(this).children().eq($('.activity-table-head th[data-type="group"]').index()).text());
+			arr_rate.push($(this).children().eq($(this).children().length-1).text())
+		}
+		num_all += $(e).children('td').eq($('.activity-table-head th[data-type="all"]').index()).text()*1;
+		num_spurt += $(e).children('td').eq($('.activity-table-head th[data-type="sprint"]').index()).text()*1;
+		num_acc += $(e).children('td').eq($('.activity-table-head th[data-type="done"]').index()).text()*1;
+	})
+	arr_mean = num_all/mean_time*(mean_time - $('.countDays .position').text()*1);
+	if(arr_mean<0)arr_mean = 0;
+	$('.achieve-data li[data-type="done"]').children('.achieve-num').text();
+	$('.achieve-data li[data-type="all"]').children('.achieve-num').text(formatCurrency(num_all)).data({'text':num_all,counterupTo:formatCurrency(num_all)});
+	$('.achieve-data li[data-type="sprint"]').children('.achieve-num').text(formatCurrency(num_spurt)).data({'text':num_spurt,counterupTo:formatCurrency(num_spurt)});
+	$('.achieve-data li[data-type="done"]').children('.achieve-num').text(formatCurrency(num_acc)).data({'text':num_acc,counterupTo:formatCurrency(num_acc)});
+	$('.achieve-data li[data-type="mean"]').children('.achieve-num').text(formatCurrency(arr_mean)).data({'text':arr_mean,counterupTo:formatCurrency(arr_mean)});
+	$('.achieve-data li').children('.achieve-num').countUp();
+	//更新数值end
+	achieve_update($('.achieve-content'),$('.achieve-data'));//更新百分比
+	//完成百分比左 end
+	//趋势实时销售战报
+	$('.activity-content-right label span').text(formatCurrency(num_acc)).data({'text':num_acc,counterupTo:formatCurrency(num_acc)}).countUp();
+	//趋势实时销售战报end
+	//前三甲
+	$('.activity-content-ranking').children().each(function(){
+		$(this).find('span').eq(0).text(arr_ground[$(this).data('no')*1-1]);
+		$(this).find('span').eq(1).text(arr_rate[$(this).data('no')*1-1]);
+	})
+	//前三件end
+}
+
+
+//数据加载
+function redraw(){
+	var datas = [{num:1,name:'nn',num1:50000,num3:8000,num4:'0'},{num:2,name:'nn',num1:50000,num3:8000,num4:'0'},{num:3,name:'srx',num1:50000,num3:8000,num4:'0'},{num:4,name:'四月',num1:50000,num3:8000,num4:'0'},{num:5,name:'穷穷',num1:50000,num3:8000,num4:'0'}];
+	$('.activity-content-table').children().remove();
+	table({data:datas,parent:'.activity-content-table',head:'业绩排行榜',titlename:[{name:'排行榜',type:'ranking'},{name:'姓名',type:'group'},{name:'总目标',type:'all'},{name:'已完成业绩',type:'done'},{name:'完成率',type:'ful'}]})
+}
+
+
+
+
+$('.activity-title-left').on('click',function(){
+//	redraw();
+//	monitor();
+})

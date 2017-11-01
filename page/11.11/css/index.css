@@ -70,6 +70,21 @@ html {
   transform: rotate(45deg);
   box-shadow: 0px 0px 18px -1px #ffffff;
 }
+@font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_457663_t1tu6ayygx53766r.eot');
+  src: url('//at.alicdn.com/t/font_457663_t1tu6ayygx53766r.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_457663_t1tu6ayygx53766r.woff') format('woff'), url('//at.alicdn.com/t/font_457663_t1tu6ayygx53766r.ttf') format('truetype'), url('//at.alicdn.com/t/font_457663_t1tu6ayygx53766r.svg#iconfont') format('svg');
+  
+  /* project id 457663 */
+}
+.icon {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
 .roll_title {
   height: 100%;
   position: relative;
@@ -106,6 +121,16 @@ html {
 }
 body {
   background: #1c385f;
+}
+body:before {
+  position: absolute;
+  top: -15%;
+  z-index: -1;
+  background: radial-gradient(40% 50%, #45a3d6, #1c385f) no-repeat center;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 50%;
 }
 .shade {
   position: absolute;
@@ -384,7 +409,7 @@ body {
   font-style: normal;
 }
 .activity-content .activity-content-top .activity-content-moner .activity-content-right:after {
-  background: #3478A5;
+  background: linear-gradient(to top, #306d9a, #3476a4);
 }
 .activity-content .activity-content-top .activity-content-ranking {
   padding-left: 131px;
@@ -406,6 +431,16 @@ body {
   width: 100%;
   position: absolute;
   left: 0;
+}
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no2 label i,
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no1 label i,
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no3 label i {
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 26px;
+  width: 100%;
+  text-align: center;
+  display: block;
 }
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no2 span,
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no1 span,
@@ -433,6 +468,9 @@ body {
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no2 label {
   bottom: 100px;
 }
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no2 label i {
+  color: #E0E0DF;
+}
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no1 div {
   width: 100%;
   height: 140px;
@@ -448,6 +486,9 @@ body {
 }
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no1 label {
   bottom: 140px;
+}
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no1 label i {
+  color: #F4EA29;
 }
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no3 div {
   background: #E8BD82;
@@ -466,8 +507,11 @@ body {
 .activity-content .activity-content-top .activity-content-ranking .activity-content-no3 label {
   bottom: 75px;
 }
+.activity-content .activity-content-top .activity-content-ranking .activity-content-no3 label i {
+  color: #E9BE87;
+}
 .activity-content .activity-content-top .activity-content-moner:before {
-  background: #3478A4;
+  background: linear-gradient(to left, #306d9a, #3476a4);
 }
 .activity-content .activity-content-top .activity-content-aim:before,
 .activity-content .activity-content-top .activity-content-table:after,
@@ -523,6 +567,10 @@ body {
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box table {
   width: 100%;
 }
+.activity-content .activity-content-bottom .activity-content-table .activity-table-box table th {
+  text-align: center;
+  width: 16.6%;
+}
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box .activity-table-body {
   position: absolute;
   top: 38px;
@@ -536,6 +584,9 @@ body {
   border: 1px solid #2E69A2;
   color: #fff;
   text-align: center;
+}
+.activity-content .activity-content-bottom .activity-content-table .activity-table-box tr td {
+  width: 16.6%;
 }
 .countdownHolder {
   height: 210px;
@@ -591,7 +642,7 @@ body {
   height: 100%;
   padding: 30px 20px;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   justify-content: space-between;
 }
 .achieve-data li {
