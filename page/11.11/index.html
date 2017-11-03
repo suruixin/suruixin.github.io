@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+	<title>看板</title>
 </head>
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/index.css" />
+<link rel="stylesheet" href="__PUBLIC__/kanban/css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/kanban/css/index.css" />
 <body>
 <ul class="activity-title">
 	<li class="activity-title-left">
@@ -20,8 +20,8 @@
 		<div class="activity-content-date activity-content-right"></div><!--倒计时-->
 		<div class="activity-content-moner activity-shape"><!--实时报表-->
 			<div class="activity-content-right">
-				<p><span class="acticity-img"></span><span>趋势实时销售战报</span></p>
-				<label><em>￥</em><span>15000000</span></label>
+				<p><span class="acticity-img acticity-img-no"></span><span>趋势实时销售战报</span></p>
+				<label><em>￥</em><span>{$action_info.finished}</span></label>
 			</div>
 		</div>
 		<ul class="activity-content-ranking activity-shape"><!--排行榜-->
@@ -29,7 +29,7 @@
 				<label>
 					<i class="icon">&#xe603;</i>
 					<span>倍润清</span>
-					<span>80%</span>
+					<span>70%</span>
 				</label>
 				<div>2</div>
 			</li>
@@ -91,9 +91,16 @@
 	</ul>
 </div>
 </body>
-<script src="js/libs/jquery.js"></script>
-<script src="js/libs/jquery.countup.min.js"></script>
-<script src="js/libs/jquery.waypoints.min.js"></script>
-<script src="js/libs/build.js"></script>
-<script src="js/index.js"></script>
+<script type="text/javascript">
+var bcode='';
+var mean_time='{$action_info.daynum}';
+var get_url='{:U("Activity/index/ajaxget")}';
+var shop_list={$shop_list|json_encode};
+var ts='{$action_info.end_time}'*1000;
+</script>
+<script src="__PUBLIC__/kanban/js/libs/jquery.js"></script>
+<script src="__PUBLIC__/kanban/js/libs/jquery.countup.min.js"></script>
+<script src="__PUBLIC__/kanban/js/libs/build.js"></script>
+<script src="__PUBLIC__/kanban/js/index.js"></script>
+
 </html>

@@ -62,10 +62,13 @@ roll.prototype = {
 			//时间函数
 			function time(){
 				$t.find('.pull-box>ul').animate({'margin-left': -$t.find('.pull-box>ul').children('li').eq(0).outerWidth()},that.animatetime,function(){
-					$t.find('.pull-box>ul').children('li').eq(0).insertAfter($t.find('.pull-box>ul').children('li').eq($t.find('.pull-box>ul').children('li').length-1)).parent().css('margin-left',0)
+					$t.find('.pull-box>ul').children('li').eq(0).insertAfter($t.find('.pull-box>ul').children('li').eq($t.find('.pull-box>ul').children('li').length-1)).parent().css('margin-left',0);
+					$('.sign').removeClass('sign');
+					$t.find('.pull-box>ul').children('li').eq(0).addClass('sign')
 					if(that.btn){
 						that.click.call(this.childNodes[0]);
-						monitor()
+						monitor();
+						$('.acticity-img-no').removeClass('acticity-img').text($t.find('.sign').text());
 					}
 				})
 			}
@@ -87,11 +90,18 @@ roll.prototype = {
 					that.click.call(this.childNodes[0]);
 					monitor();
 				})
+				$('.sign').removeClass('sign');
+				$t.find('.pull-box>ul').children('li').eq(0).addClass('sign');
+				$('.acticity-img-no').removeClass('acticity-img').text($t.find('.sign').text());
 			})
 		}
 		$t.find('.pull-box>ul li').on('click',function(){
+			redraw();
 			that.click.call(this);
 			monitor();
+			$('.sign').removeClass('sign');
+			$(this).addClass('sign');
+			$('.acticity-img-no').removeClass('acticity-img').text($(this).text());
 		})
 	}
 }
@@ -106,8 +116,6 @@ $.fn.countdown = function(prop){
 		callback	: function(){},
 		timestamp	: 0
 	},prop);
-	
-	console.log(options)
 	var left, d, h, m, s, positions;
 	init(this, options);
 	positions = this.find('.position');
@@ -238,20 +246,25 @@ function table(tab){
 	var html = '<div class="activity-table-title">'+tab.head+'</div><div class="activity-table-box"><div class="activity-table-head"><table><thead><tr>';
 	arr_ground = [];
 	$.each(tab.titlename,function(i,e){
-		console.log(i,e)
 		html += '<th data-type="'+e.type+'">'+e.name+'</th>'
 	})
-	html += '</tr></thead></table></div><div class="activity-table-body"><table><tbody>';
+	html += '<th>成就</th></tr></thead></table></div><div class="activity-table-body"><table><tbody>';
 	$.each(tab.data,function(i,e){
 		html += '<tr>';
 		$.each(e,function(n,x){
 			html += '<td>'+x+'</td>';
 		})
-		html += '</tr>'
+		html += '<td class="achievement"></td></tr>'
 	})
-	html += '</tbody></table></div>'
+	html += '</tbody></table></div>';
 	$(tab.parent).html(html);
+	var _h = '';
+	for(var i = 0 ; i < 6 ; i++){
+		_h += '<i style="background-position:'+i*30+' 0"></i>'
+	}
+	$('.achievement').html(_h)
 	table_time();
+	monitor()
 }
 var settime ='';
 function table_time(){
@@ -266,7 +279,7 @@ function table_time(){
 			$('.activity-table-body tr').each(function(){
 				if(!$(this).is(':hidden')){
 					if($(this).offset().top-$(this).parent().offset().top+$(this).outerHeight()<$(this).closest('.activity-table-body').height()){
-						$(this).animate({'margin-top':100,opacity:0},600,function(){
+						$(this).animate({opacity:0},600,function(){
 							$(this).css({opacity:1}).hide();
 							if($(this).index()==$(this).siblings().length){
 								$('.activity-table-body tr').show();
@@ -282,20 +295,6 @@ function table_time(){
 }
 
 
-
-	
-$('button').on('click',function(){
-//	var arr = [];
-//	$('.title2 tr').each(function(){
-//		arr.push()
-//	})
-//	var max = Math.max.apply(Math,arr);
-	console.log($('.title2 tr').eq(3).offset().top)
-	var _t = $('.title2 tr').eq(1).offset().top - $('.title2 tr').parent().offset().top;
-	$('.title2 tr').eq(1).css({'position':'absolute',top:_t,transform:'scale(1.2)'}).animate({top:0},600,function(){
-		$(this).css({'position':'relative',transform:'scale(1)'}).insertBefore($('.title2 tr').eq(0))
-	})
-})
 
 
 
@@ -357,7 +356,7 @@ function monitor(){//监听事件
 
 //数据加载
 function redraw(){
-	var datas = [{num:1,name:'nn',num1:50000,num3:8000,num4:'0'},{num:2,name:'nn',num1:50000,num3:8000,num4:'0'},{num:3,name:'srx',num1:50000,num3:8000,num4:'0'},{num:4,name:'四月',num1:50000,num3:8000,num4:'0'},{num:5,name:'穷穷',num1:50000,num3:8000,num4:'0'}];
+	var datas = [{num:1,name:'nn',num1:50000,num3:8000,num4:'90%'},{num:2,name:'nn',num1:50000,num3:8000,num4:'100%'},{num:3,name:'srx',num1:50000,num3:8000,num4:'0'},{num:4,name:'四月',num1:50000,num3:8000,num4:'50%'},{num:5,name:'穷穷',num1:50000,num3:8000,num4:'80%'}];
 	$('.activity-content-table').children().remove();
 	table({data:datas,parent:'.activity-content-table',head:'业绩排行榜',titlename:[{name:'排行榜',type:'ranking'},{name:'姓名',type:'group'},{name:'总目标',type:'all'},{name:'已完成业绩',type:'done'},{name:'完成率',type:'ful'}]})
 }
@@ -366,6 +365,15 @@ function redraw(){
 
 
 $('.activity-title-left').on('click',function(){
+	$('.activity-content-right .acticity-img-no').addClass('.acticity-img')
 //	redraw();
 //	monitor();
+//	var _t = $('.activity-table-body tr').eq(1).offset().top - $('.activity-table-body tr').parent().offset().top;
+//	$('.activity-table-body tr').eq(1).css({'position':'absolute',top:_t,transform:'scale(1.2)'}).animate({top:0},600,function(){
+//		$(this).css({'position':'relative',transform:'scale(1)'}).insertBefore($('.activity-table-body tr').eq(0))
+//	})
 })
+
+
+
+

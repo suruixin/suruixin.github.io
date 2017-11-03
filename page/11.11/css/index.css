@@ -567,9 +567,21 @@ body:before {
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box table {
   width: 100%;
 }
-.activity-content .activity-content-bottom .activity-content-table .activity-table-box table th {
+.activity-content .activity-content-bottom .activity-content-table .activity-table-box table tr {
+  height: 38px;
+  width: 100%;
+  border: 1px solid #2E69A2;
+  color: #fff;
   text-align: center;
-  width: 16.6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.activity-content .activity-content-bottom .activity-content-table .activity-table-box table tr th {
+  float: left;
+  line-height: 38px;
+  min-width: 100px;
+  text-align: center;
 }
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box .activity-table-body {
   position: absolute;
@@ -578,15 +590,26 @@ body:before {
   overflow: hidden;
   width: 100%;
 }
+.activity-content .activity-content-bottom .activity-content-table .activity-table-box .activity-table-body .achievement i {
+  background: url(../images/12.png) no-repeat;
+  width: 30px;
+  height: 30px;
+  float: left;
+}
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box tr {
   height: 38px;
   width: 100%;
   border: 1px solid #2E69A2;
   color: #fff;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .activity-content .activity-content-bottom .activity-content-table .activity-table-box tr td {
-  width: 16.6%;
+  float: left;
+  line-height: 38px;
+  min-width: 100px;
 }
 .countdownHolder {
   height: 210px;

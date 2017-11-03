@@ -1,7 +1,8 @@
-var jsons = [{name:'倍润清'},{name:'祛痘'},{name:'祛斑'},{name:'生发'},{name:'黑头'},{name:'红血丝'},{name:'抗皱'},{name:'祛痘'},{name:'祛斑'},{name:'生发'},{name:'黑头'},{name:'红血丝'},{name:'抗皱'},{name:'祛痘'},{name:'祛斑'},{name:'生发'},{name:'黑头'},{name:'红血丝'},{name:'抗皱'}]
-
-var R = new roll({parents:'.activity-title-right',data:jsons,btn:true,classname:'activity-title-content',click:function(){
-	console.log(this)
+var jsons =shop_list||{},oldbcode='srx';
+var olddata = '';
+var R = new roll({keys:'shop_bcode',roll:'false',parents:'.activity-title-right',data:jsons,btn:true,classname:'activity-title-content',click:function(){
+	bcode = $('.sign').data('shop_bcode');
+	getdata();
 }});
 	R.engine();
 	
@@ -11,21 +12,84 @@ X.engine();
 
 
 //倒计时
-var ts = new Date('2017-11-7 00:00:00').getTime();
+
 $('.activity-content-date').countdown({
 	timestamp	: ts
 });
 
 
-//完成度
-achieve({parent:'.activity-content-aim',keys:[{name:'已完成目标业绩',contrase:1,type:'done'},{name:'应完成业绩目标',contrase:2,type:'mean'},{name:'总目标业绩',contrase:3,type:'all'},{name:'冲刺目标业绩',contrase:0,type:'sprint'}]})
-
-
-//详细数据
-var datas = [{num:1,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'0'},{num:2,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'0'},{num:3,name:'ccc',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:4,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:5,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:6,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:7,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:8,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:9,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:10,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:11,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:12,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:13,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:14,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'},{num:15,name:'倍润清',num1:50000,num2:80000,num3:8000,num4:'100%'}]
-table({data:datas,parent:'.activity-content-table',head:'业绩排行榜',titlename:[{name:'排行榜',type:'ranking'},{name:'项目组',type:'group'},{name:'总目标',type:'all'},{name:'冲刺目标',type:'sprint'},{name:'已完成业绩',type:'done'},{name:'完成率',type:'ful'}]})
 
 
 
 
-window.mean_time = 6;//活动天数
+//30秒
+getdata();
+function getdata(){
+	$.get(get_url+'?bcode='+bcode,function(back){
+		if(JSON.stringify(back) == olddata){
+			return false
+		}
+		//完成度
+		if(bcode == ''){
+			var frate = 'rate',name = 'name',_id="shop_bcode";
+			var titlename = [{name:'排行榜',type:'ranking'},{name:'项目组',type:name},{name:'总目标',type:'final_goal'},{name:'冲刺目标',type:'sprint_goal'},{name:'已完成业绩',type:'finished'},{name:'完成率',type:'frate'}];
+		}else{
+			var frate = 'frate',name = 'user_name',_id='user_id';
+			var titlename = [{name:'排行榜',type:'ranking'},{name:'姓名',type:name},{name:'总目标',type:'final_goal'},{name:'冲刺目标',type:'sprint_goal'},{name:'已完成业绩',type:'finished'},{name:'完成率',type:'frate'}];
+		}
+		$('.activity-content-aim').children().remove();
+		achieve({data:back.data.info,parent:'.activity-content-aim',keys:[{name:'已完成目标业绩',contrase:1,type:'finished'},{name:'应完成业绩目标',contrase:2,type:'finished_today'},{name:'总目标业绩',contrase:3,type:'final_goal'},{name:'冲刺目标业绩',contrase:0,type:'finished'}],bl:frate});
+		if(bcode == oldbcode){
+			$.each(back.data.list,function(i,e){
+				var html=''
+				$.each(titlename,function(n,x){
+					if(n == 0&& x.type == 'ranking'){
+						html += '<td>'+(i+1)+'</td>';
+					}else{
+						html += '<td data-'+x.type+'="'+e[x.type]+'">'+e[x.type]+'</td>';
+					}
+				})
+				$('.activity-table-body tr[data-_id="'+e[_id]+'"]').attr('new',i).html(html)
+			})
+		}else{
+			//详细数据
+			table({data:back.data.list,parent:'.activity-content-table',head:'业绩排行榜',titlename:titlename,id:_id})
+		}
+		monitor(back.data.info.finished);
+		
+		olddata = JSON.stringify(back);
+		
+		var flag = true;
+		function _c(){
+			$('.activity-table-body tr').each(function(i,e){
+				if($(this).attr('new')*1!=$(this).attr('data-old')*1&&flag == true){
+					if($(this).attr('data-old') == $(this).prev().data('old')){
+						$(this).attr('data-old',$(this).attr('data-old')*1+1)
+					}
+					flag =false;
+					var prev = $('.activity-table-body tr[new="'+($(this).attr('data-old'))+'"]');
+					var _t = prev.offset().top - $(this).parent().offset().top;
+					var nt = $(this).offset().top - $(this).parent().offset().top;
+					var $t=$(this);
+					prev.css({'position':'absolute',top:_t,transform:'scale(1.5)','font-weight':'bold'}).animate({top:nt},(_t-nt)*20,function(){
+						$(this).css({'position':'relative',transform:'scale(1)',top:0,'font-weight':'400'}).insertBefore($('.activity-table-body tr').eq($(this).attr('new')*1-1));
+						var old_t = $(this).attr('data-old');
+						$(this).attr('data-old',$t.attr('data-old'));
+						$('.activity-table-body tr').eq(old_t-1).attr('data-old',old_t);
+						flag = true;_c();
+					})
+				}
+			})
+		}
+		if($(this).attr('new'))_c()
+	})
+}
+
+
+
+
+$('.activity-title-left').on('click',function(){
+	$('.activity-content-right .acticity-img-no').addClass('acticity-img').text('');
+	bcode = '';
+	getdata();
+})

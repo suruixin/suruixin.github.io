@@ -549,9 +549,21 @@ body:before{
                 .w();
                 table{
                     .w();
-                    th{
+                    tr{
+                       .h(38px);
+                        .w();
+                        border:1px solid #2E69A2;
+                        color: #fff;
                         text-align: center;
-                        .w(16.6%);
+                        display: flex;
+                        flex-direction: row;
+                        justify-content:space-between;
+                        th{
+                            float: left;
+                            line-height: 38px;
+                            min-width: 100px;
+                            text-align: center;
+                        }
                     }
                 }
                 .activity-table-body{
@@ -560,6 +572,14 @@ body:before{
                     bottom: 0;
                     overflow: hidden;
                     .w();
+                    .achievement{
+                        i{
+                            background: url(../images/12.png) no-repeat;
+                            .w(30px);
+                            .h(30px);
+                            float: left; 
+                        }
+                    }
                 }
                 tr{
                     .h(38px);
@@ -567,8 +587,13 @@ body:before{
                     border:1px solid #2E69A2;
                     color: #fff;
                     text-align: center;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content:space-between;
                     td{
-                        .w(16.6%);
+                        float: left;
+                        line-height: 38px;
+                        min-width: 100px;
                     }
                 }
             }
@@ -666,5 +691,4 @@ body:before{
     background-repeat: no-repeat;
     background-position-y: 250px;
     animation:hl linear 12s infinite;
-    
 }
