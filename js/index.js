@@ -1,7 +1,7 @@
 //组件
 Vue.component('banner',{
 	template:'<div @wheel="wheel" class="banner">'
-		+'<ul><a href="page/demo.html">demo</a></ul>'
+		+'<ul></ul>'
 		+'<div @mousemove="hover"></div>'
 		+'<ul></ul>'
 		+'<div @mousemove="hover"></div>'

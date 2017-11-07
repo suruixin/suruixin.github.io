@@ -9,7 +9,6 @@
 
 ;!function(){
   "use strict";
-
   var isLayui = window.layui && layui.define, ready = {
     getPath: function(){
       var js = document.scripts, script = js[js.length - 1], jsPath = script.src;
@@ -27,6 +26,7 @@
     ,link: function(href, fn, cssname){
       
       //未设置路径，则不主动加载css
+      console.log(laydate)
       if(!laydate.path) return;
       
       var head = document.getElementsByTagName("head")[0], link = document.createElement('link');
