@@ -8,13 +8,14 @@
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link rel="stylesheet" href="css/index.css" />
 <body>
-<div id="home">
+<!--<div id="home">
 	<banner></banner>
-</div>
+</div>-->
+<input type="text" id="start" /><input type="text" id="end" />
 </body>
 <script src="js/lib/jquery.js"></script>
 <script src="js/lib/underscore.js"></script>
-<script src="js/lib/laydate/laydate.js"></script>
+<script src="js/lib/laydate/laydate.min.js"></script>
 <script src="js/lib/vue.min.js"></script>
 <script src="js/index.js"></script>
 <script>
@@ -83,6 +84,33 @@
 //var a = _.contains(arr,3)
 //console.log(a)//true
 
-var ar
+//var arr = [{name:1,age:2},{name:3,age:4},{name:5,age:6}];
+//var a = _.pluck(arr,'name');
+//console.log(a)//[1,3,5]
+
+//var arr = [{name:1,age:2},{names:1,age:2},{name:1,age:2}]
+//var arr2 = [1,2,3,4]
+//var a = _.pluck(arr,'name')
+//console.log(a)//[1,undefined,1]
+
+//var arr = [{name:3,age:2},{names:5,age:2},{name:4,age:2}];
+//var ass = [{name:10}]
+//var a = _.max(arr,function(num,i,e){
+//	return num.name
+//},ass)
+//console.log(a)//{name:4,age:2}
+
+//var arr = [{name:3,age:2},{names:5,age:2},{name:4,age:2}];
+//var ass = [{name:10}]
+//var a = _.min(arr,function(num,i,e){
+//	return num.name
+//},ass)
+//console.log(a)//{name:3,age:2}
+
+//var arr = [1,2,4,3,5]
+//var a = _.sortBy(arr);
+//console.log(a)//[1,2,3,4,5]
+
+
 </script>
 </html>
