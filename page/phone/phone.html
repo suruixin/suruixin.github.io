@@ -2,14 +2,21 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
 		<title></title>
 	</head>
 	<body>
 		<div id="main" style="width: 600px;height:400px;"></div>
+		<input type="file" accept="image/*"/>
 	</body>
 	<script src="../../js/lib/zepto.js"></script>
 	<script src="../../js/lib/echarts.js"></script>
 	<script>
+		console.log()
+		//'https://passport.netease.im/czc/cregsm?mb=18519734771&cap=2wsk&type=1&nocache=1510113376363'
+		$.get('https://passport.netease.im/czc/checkssn?ssn=18519734781&type=1&nocache='+new Date().getTime(),function(data){
+			console.log(data)
+		})
 		var myChart = echarts.init(document.getElementById('main'));
 		// 指定图表的配置项和数据
         var option = {
