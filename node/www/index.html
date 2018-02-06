@@ -21,6 +21,10 @@
 				act: $(this).attr('name'),
 				name: $('input[type="text"]').val(),
 				pass: $('input[type="password"]').val()
+			},
+			function(data){
+				console.log(data)
+
 			})
 		})
 	</script>
