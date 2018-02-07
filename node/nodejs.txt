@@ -24,6 +24,14 @@ fs.writeFile()//写文件
 
 
 
+var querystring=require('querystring');
+
+querystring.parse(); 
+
+var  url = require('url');
+url.parse()
+
+
 Crypto	加密
 Events	事件
 Net	网络操作/邮件
@@ -32,3 +40,49 @@ Path	处理文件路径
 Stream	流操作/非常重要
 timer	定时器
 ZLIB	压缩
+
+
+
+引入自己的模块
+require  请求  ：引入模版
+module   批量输出模块
+exports	 输出
+
+
+npm命令
+
+npm init
+npm publish
+npm --force unpublish
+npm update  更新
+npm search  搜索
+
+npm<command>  可以查看npm的命令
+
+node_modules	模块放这里
+
+上传自己的模块
+npm官网注册账号
+npm login登录
+npm whoami 当前登录账号名
+
+
+
+
+express框架
+1 安装
+2 配置
+3 接受数据
+4 响应 
+
+express使用
+1 创建服务
+var server = express();
+2 监听
+server.listen(8080);
+3 处理请求
+server.use('地址',function(req,res)) //get,post都可以处理
+.get('地址',function(req,res))
+.post('地址',function(req,res) )
+
+express-static  //处理静态文件
