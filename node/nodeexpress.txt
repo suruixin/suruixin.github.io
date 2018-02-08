@@ -1,0 +1,51 @@
+﻿express
+1、数据：get,post
+	req.query//get
+	server.use(bodyParser.urlencoded({}))
+	server.use(function(req,res,next){
+		req.body();
+		next();
+	})
+2、链式操作
+	server.use(function(req,res,next){})
+	server.get('/',function(req,res,next){})
+	server.post('/',function(req,res,next){})
+	next---下一个步骤
+3、中间件：使用，写
+
+
+body-parser   中间件  用来解析post数据
+
+
+
+cookie、session
+cookie-parser
+cookie-session
+
+require('cookie-parser');  
+
+
+cookie使用
+1、发送cookie
+	res.secret = '密钥 '
+	res.cookie(名字，值,{path:'/',maxAge:毫秒,signed：true(签名)})
+2、读取cookie
+	cookie-parser
+	server.use(cookieParser('密钥'));
+	server.use(function(){
+		req.cookies  //未签名cookie
+		req.signedCookies  //签名Cookie
+	})
+3、删除cookie
+	res.clearCookie(名字)
+
+
+session使用
+server.use(cookieSession({
+
+}));
+
+server.use(function(req,res){
+	req.session['xxx']//读写session
+	delete r eq.session['xxx']//删除session
+})
