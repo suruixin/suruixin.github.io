@@ -14,8 +14,23 @@
 3、中间件：使用，写
 
 
-body-parser   中间件  用来解析post数据
+body-parser   中间件  用来解析post数据   application/x-www-form-urlencode
+server.use(bodyParser.urlencode());
+req.body;
 
+
+multer  文件上傳	用来解析post数据	multipart/form-data
+var obj  = multer({dest:'upload/'});//dest指定存放文件位置;
+server.use(obj.any());	//接收所有文件
+server.use(obj.single('f1'));	//接收指定文件
+server.use('/',function(req,res){
+	req.files[0].originalname;
+});
+//把擴展名加上
+
+fs.rename('舊的文件名', '新的文件名', function(err){
+	
+})
 
 
 cookie、session
@@ -49,3 +64,8 @@ server.use(function(req,res){
 	req.session['xxx']//读写session
 	delete r eq.session['xxx']//删除session
 })
+
+
+
+总结
+需要的包   express  express-static  body-parser cookie-parser cookie-session jade(pug)  ejs
