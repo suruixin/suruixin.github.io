@@ -24,3 +24,17 @@ script(src="",ref="")
 div 内容
 
 ------------------------------------------------------------------------
+
+consolidate  适配
+
+------------------------------------------------------------------------
+
+总结
+模板引擎 ：适配
+1、consolidate
+	server.set('view engine','html');   //要输出什么
+	server.set('views','模板文件目录');	// 从那里找模板  模板叫什么
+	server.engine('html',consolidate.ejs);	//输出整合后的文件
+	server.get('/',function(req,res){
+		req.render('模板文件',数据)
+	})
