@@ -23,7 +23,7 @@ server.post('/',file.any(),function(req,res,next){
 			res.end();
 		})
 	}
-	// 2.修改文件名
+	// 2.修改文件名；W
 });
 
 
