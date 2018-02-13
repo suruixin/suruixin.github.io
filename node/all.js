@@ -14,7 +14,7 @@ var keys = 'qweqweqwewqasdw';//密钥
 const server = express();
 const db = mysql.createPool({host:'localhost', port:3302, user:'root', password:'123456', database:'nodejs'})
 
-server.listen(8080);
+server.listen(8081);
 
 // 1、解析cookie
 server.use(cookieParser(keys));
@@ -44,6 +44,7 @@ server.engine('html',consolidate.ejs);
 server.use('/', (req,res) => {
 	var urls = urllib.parse(req.url,true);
 	if(urls.pathname == '/user'){
+console.log(urls.pathname)
 		var name = urls.query.name;
 		var pass = urls.query.pass;
 		if(urls.query.act == 'signin'){
