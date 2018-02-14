@@ -44,7 +44,6 @@ server.engine('html',consolidate.ejs);
 server.use('/', (req,res) => {
 	var urls = urllib.parse(req.url,true);
 	if(urls.pathname == '/user'){
-console.log(urls.pathname)
 		var name = urls.query.name;
 		var pass = urls.query.pass;
 		if(urls.query.act == 'signin'){

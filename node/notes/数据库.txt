@@ -45,9 +45,9 @@ SQL:
 		INSERT INTO 表 (字段列表) VALUES(值列表)
 		INSERT INTO `user_table` (`ID`,`username`,`password`) VALUES(0,'srx','123456');
 	删 DELETE
-
+		DELETE FROM 表 WHERE 条件
 	改 UPDATE
-
+		UPDATE 表 SET 字段=值,字段=值,字段=值,..... WHERE 条件 
 	查 SELECT
 		SELECT 什么 FROM 表
 		SELECT * FROM `user_table`
@@ -56,3 +56,21 @@ SQL标准写法
 3、库、表、字段需要加上``
 
 ------------------------------------------------------------------------------------------
+
+子句:
+WHERE 条件
+
+WHERE name="srx"
+WHERE age>= 18
+WHERE age>18 AND name="srx"
+WHERE age>18 OR name="srx"
+
+ORDER 排序
+ORDER BY age ASD/DESC,name ASD/DESC
+	ASC - 升序
+	DESC - 降序
+
+GROUP 聚类-合并数据 
+SELECT 字段 FROM 表单名 GROUP BY 字段
+
+SELECR 字段,COUNT(字段) FROM 表单名 GROUP BY 字段   //求和

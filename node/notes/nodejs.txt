@@ -7,7 +7,8 @@
 var server = http.createServer(function(request,response){
 	request.url
 	response.write("返回数据");
-	response.end("返回数据结束")；
+	response.end("返回数据结束");
+	response.status(400);//返回错误码
 });创建一台服务器 
 //request  请求
 //response   相应
@@ -86,3 +87,5 @@ server.use('地址',function(req,res)) //get,post都可以处理
 .post('地址',function(req,res) )
 
 express-static  //处理静态文件
+
+
