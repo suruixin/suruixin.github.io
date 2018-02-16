@@ -88,4 +88,5 @@ server.use('地址',function(req,res)) //get,post都可以处理
 
 express-static  //处理静态文件
 
-
+crypto 加密
+require('crypto')
