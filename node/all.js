@@ -7,6 +7,7 @@ const multer = require('multer');
 const consolidate = require('consolidate');
 const mysql = require('mysql');
 const urllib = require('url');
+const path = require('path');
 
 var keys = 'qweqweqwewqasdw';//密钥
 
@@ -39,7 +40,8 @@ server.set('view engine', 'html');
 server.set('views','./www/templay');
 //那种模板引擎
 server.engine('html',consolidate.ejs);
-
+//
+server.use( express.static(path.join(__dirname, 'public')) );
 //接受用户请求
 server.use('/', (req,res) => {
 	var urls = urllib.parse(req.url,true);
@@ -76,7 +78,7 @@ server.use('/', (req,res) => {
 		// 	console.log(data)
 		// });
 	}
-	res.render('index.ejs',{})
+	res.render('index.ejs',{script:'<script src="/public/js/jquery.min.js"></script>'})
 });
 
 // 5、static数据
