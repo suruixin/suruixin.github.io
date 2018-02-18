@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Document</title>
 	</head>
-
 	<body>
+		<div>15</div>
 		<input type="text" name="name" />
 		<input type="password" name="pass" />
 		<input type="submit" value="登录" name = "login" />
 		<input type="submit" value="注册" name="signin">
 	</body>
-	<%- script %>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script>
 		$('input[type="submit"]').on('click', function() {
 			$.get('./user', {

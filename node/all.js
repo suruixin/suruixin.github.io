@@ -32,16 +32,15 @@ server.use(cookieSession({name:'srx',keys:arr,maxAge:20*3600000}));
 // 3、post数据
 server.use(bodyParser.urlencoded({extended:false}));  //extended:false关闭提示
 server.use(multer({date:'./www/upload'}).any());
-
+server.use(express.static(__dirname+"/www/public"));
 // 4、配置模板引擎
+
+//模板存放位置
+server.set('views','./www/public/views');
 //输出
 server.set('view engine', 'html');
-//模板存放位置
-server.set('views','./www/templay');
 //那种模板引擎
 server.engine('html',consolidate.ejs);
-//
-server.use( express.static(path.join(__dirname, 'public')) );
 //接受用户请求
 server.use('/', (req,res) => {
 	var urls = urllib.parse(req.url,true);
@@ -56,12 +55,12 @@ server.use('/', (req,res) => {
 			}else if(name.length > 18){
 				res.send({code:2,msg:'用户名不可大于18位'})
 			}else{
-				db.query(`SELECT * FROM \`user_table\` WHERE \`username\` = '${name}';`, (err,data) => {
+				db.query(`SELECT * FROM user_table WHERE username = '${name}';`, (err,data) => {
 					if(err){
 						res.send({code:1,msg:'内部错误'})
 					}else{
 						if(data.length === 0){
-
+							// res.send({code:})
 						}else{
 							res.send({code:2,msg:'用户名已存在'})
 						}
@@ -77,8 +76,14 @@ server.use('/', (req,res) => {
 		// 	console.log(err)
 		// 	console.log(data)
 		// });
+	}else{
+		switch(req.url){
+			case '/':
+				res.render('index.ejs',{});
+			break;
+		}
 	}
-	res.render('index.ejs',{script:'<script src="/public/js/jquery.min.js"></script>'})
+	res.end();
 });
 
 // 5、static数据
