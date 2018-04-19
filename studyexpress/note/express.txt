@@ -1,0 +1,32 @@
+express.static('')
+//方便地托管静态文件
+
+app.use(express.static('public'));
+app.use('/static', express.static('public'));
+
+
+/**
+*  路由
+*/ 
+
+// 匹配 acd 和 abcd
+app.get('/ab?cd', function(req, res) {
+  res.send('ab?cd');
+});
+
+// 匹配 abcd、abbcd、abbbcd等
+app.get('/ab+cd', function(req, res) {
+  res.send('ab+cd');
+});
+
+// 匹配 abcd、abxcd、abRABDOMcd、ab123cd等
+app.get('/ab*cd', function(req, res) {
+  res.send('ab*cd');
+});
+
+// 匹配 /abe 和 /abcde
+app.get('/ab(cd)?e', function(req, res) {
+ res.send('ab(cd)?e');
+});
+
+

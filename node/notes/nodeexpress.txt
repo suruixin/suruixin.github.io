@@ -19,6 +19,16 @@ server.use(bodyParser.urlencode());
 req.body;
 
 
+multer  中间件
+用来解析post文件   multipart.form-data
+var objmulter = multer({dest:'./upload'});
+server.use(objmulter.any());
+server.use((req,res)=>{
+	req.files[0].originalname
+	req.files[0].path
+})
+
+
 multer  文件上傳	用来解析post数据	multipart/form-data
 var obj  = multer({dest:'upload/'});//dest指定存放文件位置;
 server.use(obj.any());	//接收所有文件
