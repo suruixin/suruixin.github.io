@@ -14,24 +14,38 @@ server.use(cookieParser('sssssa'));
 
 //2.使用session
 var arr = [];
-for(var i = 0; i< 10000; i++){
-	arr.push('key_'+Math.random());
-  
+for(var i = 0; i < 10000; i++) {
+	arr.push('key_' + Math.random());
+
 }
-server.use(cookieSession({name:'srx',keys:arr,maxAge:20*3600*1000}));
+server.use(cookieSession({
+	name: 'srx',
+	keys: arr,
+	maxAge: 20 * 3600 * 1000
+}));
 
 //3.post请求处理
 //post数据
-server.use(bodyParser.urlencoded({extended:false}));
+server.use(bodyParser.urlencoded({
+	extended: false
+}));
 //post文件
-server.use(multer({dest:'./www/upload'}).any());
+server.use(multer({
+	dest: './www/upload'
+}).any());
 
 //4.配置模板引擎
-server.set('views','./nodepage');
-server.set('view engine','ejs');
-server.engine('ejs',consolidate.ejs)
+server.set('views', './nodepage/16/');
+server.set('view engine', 'html');
+server.engine('html', consolidate.ejs)
 
 //5.用户请求
-server.use('/',(req,res,next)=>{
+server.use('/', (req, res, next) => {
+	res.render('index', {
+		name: 'srx'
+	})
+});
 
+server.get('/index', (req, res, next) => {
+	console.log(req)
 })
