@@ -7,7 +7,6 @@ const multer = require('multer');
 const consolidate = require('consolidate');
 const mysql = require('mysql');
 const urllib = require('url');
-const path = require('path');
 
 var keys = 'qweqweqwewqasdw';//密钥
 
@@ -15,7 +14,7 @@ var keys = 'qweqweqwewqasdw';//密钥
 const server = express();
 const db = mysql.createPool({host:'localhost', port:3302, user:'root', password:'123456', database:'nodejs'})
 
-server.listen(8081);
+server.listen(8080);
 
 // 1、解析cookie
 server.use(cookieParser(keys));
@@ -32,15 +31,15 @@ server.use(cookieSession({name:'srx',keys:arr,maxAge:20*3600000}));
 // 3、post数据
 server.use(bodyParser.urlencoded({extended:false}));  //extended:false关闭提示
 server.use(multer({date:'./www/upload'}).any());
-server.use(express.static(__dirname+"/www/public"));
-// 4、配置模板引擎
 
-//模板存放位置
-server.set('views','./www/public/views');
+// 4、配置模板引擎
 //输出
 server.set('view engine', 'html');
+//模板存放位置
+server.set('views','./www/public/views');
 //那种模板引擎
 server.engine('html',consolidate.ejs);
+
 //接受用户请求
 server.use('/', (req,res) => {
 	var urls = urllib.parse(req.url,true);
@@ -55,12 +54,12 @@ server.use('/', (req,res) => {
 			}else if(name.length > 18){
 				res.send({code:2,msg:'用户名不可大于18位'})
 			}else{
-				db.query(`SELECT * FROM user_table WHERE username = '${name}';`, (err,data) => {
+				db.query(`SELECT * FROM \`user_table\` WHERE \`username\` = '${name}';`, (err,data) => {
 					if(err){
 						res.send({code:1,msg:'内部错误'})
 					}else{
 						if(data.length === 0){
-							// res.send({code:})
+							db.query(`INN`)
 						}else{
 							res.send({code:2,msg:'用户名已存在'})
 						}
@@ -76,14 +75,8 @@ server.use('/', (req,res) => {
 		// 	console.log(err)
 		// 	console.log(data)
 		// });
-	}else{
-		switch(req.url){
-			case '/':
-				res.render('index.ejs',{});
-			break;
-		}
 	}
-	res.end();
+	res.render('index.ejs',{})
 });
 
 // 5、static数据

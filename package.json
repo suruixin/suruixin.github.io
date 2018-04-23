@@ -1,0 +1,19 @@
+{
+  "name": "demo2",
+  "version": "1.0.0",
+  "description": "The quickest way to start and publish your Jekyll powered blog. 100% compatible with GitHub pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suruixin/suruixin.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suruixin/suruixin.github.io/issues"
+  },
+  "homepage": "https://github.com/suruixin/suruixin.github.io#readme"
+}
