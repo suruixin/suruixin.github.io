@@ -32,6 +32,6 @@ server.set('view engine','ejs');
 server.engine('ejs',consolidate.ejs)
 
 //5.用户请求
-server.use('/',(req,res,next)=>{
-
+server.post('/index',(req,res,next)=>{
+	res.send({a:15})
 })
