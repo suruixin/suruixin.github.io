@@ -15,6 +15,19 @@ router.post('/login', function(req, res, next) {
 	}
 });
 
+router.post('/',(req,res)=>{
+	var arr = [];
+	for(var i = 0; i < 10; i++){
+		arr.push({
+            name: 'John Brown',
+            age: i,
+            address: `New York No. ${i} Lake Park`,
+            img:'<img src="http://www.qqzhi.com/uploadpic/2014-09-23/000247589.jpg"/>'
+        });
+	}
+    res.json({'response':arr,'state':1,'msg':''});
+})
+
 
 
 module.exports = router;

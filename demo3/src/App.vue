@@ -1,5 +1,10 @@
 <template>
-    <Table border :columns="columns7" :data="data6"></Table>
+	<div>
+		<Table border :columns="columns7" :data="data6"></Table>
+		token
+		signed  签名
+	</div>
+    
 </template>
 <script>
     export default {
@@ -40,26 +45,10 @@
             }
         },
         methods: {
-            show (index) {
-                this.$Modal.info({
-                    title: 'User Info',
-                    content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
-                })
-            },
-            remove (index) {
-                this.data6.splice(index, 1);
-            },
             getData(){
-            	setTimeout(()=>{
-            		for(var i = 0 ; i < 10; i++){
-		        		this.data6.push({
-		                    name: 'John Brown',
-		                    age: i,
-		                    address: `New York No. ${i} Lake Park`,
-		                    img:'<img src="1516"/>'
-		                })
-		        	}
-            	},200);
+            	this.$http.post('/').then(response=>{
+            		this.data6 = response.data.response
+            	})
             }
         },
         created(){
