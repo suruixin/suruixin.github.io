@@ -1,15 +1,19 @@
 <template>
 	<div>
-		<Table border :columns="columns7" :data="data6"></Table>
-		token
-		signed  签名
+		<!--<router-view name="helloworld" />-->
+		<!--<Table border :columns="columns7" :data="data6"></Table>-->
+		<!--token-->
+		<button @click="engine++">dianji</button>
+		<ball :engine = "engine" :bottom="'500'" :left="'350'"></ball>
 	</div>
     
 </template>
 <script>
+	import ball from '@/components/HelloWorld'
     export default {
         data () {
             return {
+            	engine: 0,
                 columns7: [
                     {
                         title: 'Name',
@@ -53,6 +57,9 @@
         },
         created(){
         	this.getData();
+        },
+        components:{
+        	ball
         }
     }
 </script>
