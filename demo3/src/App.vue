@@ -4,7 +4,7 @@
 		<!--<Table border :columns="columns7" :data="data6"></Table>-->
 		<!--token-->
 		<button @click="engine++">dianji</button>
-		<ball :engine = "engine" :bottom="'500'" :left="'350'"></ball>
+		<ball :engine = "engine" :bottom="500" :left="-350" :html="'span'"></ball>
 	</div>
     
 </template>
