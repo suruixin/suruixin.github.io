@@ -7,6 +7,7 @@ import axios from 'axios'
 import store from './store/index'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import '@/static/less/common.less'
 
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios
