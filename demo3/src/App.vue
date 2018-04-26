@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="app">
 		<router-view name="login"></router-view>
 		<router-view name="home"></router-view>
 		<!--token-->
@@ -35,5 +35,9 @@
     }
 </script>
 
-<style>
+<style lang="less">
+body,html,#app{
+    width:100%;
+    height:100%;
+}
 </style>

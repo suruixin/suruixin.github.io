@@ -33,6 +33,17 @@ app.use(cookieSession({
 // 	console.log(req.session)
 // 	delete req.session
 
+
+
+app.use((req,res,next)=>{
+	if(!req.session.status&&req.originalUrl != "/login"){
+		res.json({state:2,msg:'未登录，无法进行操作',data:[]}).end();;
+	}else{
+		next();
+	}
+})
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

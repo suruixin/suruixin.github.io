@@ -2,54 +2,58 @@
 	<div id="engine">
 		<transition>
 			<ul class="engineTab">
-				<li>
-					<div>
-						<span>1</span>
-						<span>2</span>
-						<span>3</span>
-						<span>4</span>
-						<span>5</span>
-					</div>
-				</li>
+				<li></li>
+
 			</ul>
 		</transition>
 		<ul class="engineContent">
-			
+			<li class="conItem" v-for="(item,index) in data" :key="index" ></li>
 		</ul>
 	</div>
 </template>
 
 <script>
-	export default({
-		data(){
-			return {
-				
-			}
+export default({
+	data(){
+		return {
+			data:[
+				{
+					id:1,
+					x:6,
+					y:6,
+					w:6,
+					h:6
+				},
+				{
+					id:2,
+					x:0,
+					y:0,
+					w:6,
+					h:6
+				},
+				{
+					id:3,
+					x:0,
+					y:12,
+					w:6,
+					h:6
+				}
+			]
 		}
-	})
+	}
+})
 </script>
 
 <style lang=less scoped>
 #engine{
+	display:flex;
+	height:100%;
+	width:100%;
 	.engineTab{
 		width:200px;
-		height:auto;
-		display:flex;
-		div{
-			display:flex;
-			width:200px;
-			justify-content:space-between;
-			flex-wrap:wrap;
-			align-content:space-around;
-			span{
-				width:80px;
-				height:30px;
-				display:block;
-				background:red;
-				text-align:center;
-				line-height:30px;
-			}
-		}
+	}	
+	.engineContent{
+		flex: 1;
 	}
 }
 </style>
