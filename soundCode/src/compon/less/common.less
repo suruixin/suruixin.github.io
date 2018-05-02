@@ -7,7 +7,8 @@
 }
 
 body,
-html,ul {
+html,
+ul {
     padding: 0;
     margin: 0;
 }
@@ -43,5 +44,50 @@ li {
         left: 15px;
         right: 15px;
         bottom: 15px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .border-all,
+    .border-left,
+    .border-right,
+    .border-top,
+    .border-bottom {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            border: 1px solid transparent;
+            width: 200%;
+            height: 200%;
+            left: -50%;
+            bottom: -50%;
+            transform: scale(0.5);
+        }
+    }
+    .border-left {
+        &:after {
+            border-left-color: #e1e1e1
+        }
+    }
+    .border-all {
+        &:after {
+            border-color: #e1e1e1
+        }
+    }
+    .border-right {
+        &:after {
+            border-right-color: #e1e1e1
+        }
+    }
+    .border-top {
+        &:after {
+            border-top-color: #e1e1e1
+        }
+    }
+    .border-bottom {
+        &:after {
+            border-bottom-color: #e1e1e1
+        }
     }
 }
