@@ -1,7 +1,6 @@
+import state from './state'
 const mutations = {
-	increment(state) {
-		state.todos[0].id++
-	}
+	
 }
 
 

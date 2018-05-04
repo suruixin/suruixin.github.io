@@ -3,15 +3,17 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import '@/compon/less/common.less'
-import store from './store/index'
+import '@/compon/css/iconfont.css'
+import store from './store/store'
 
 Vue.config.productionTip = false;
-Vue.prototype.$http = axios;
 
+Vue.prototype.$http = axios;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
-})
+});
