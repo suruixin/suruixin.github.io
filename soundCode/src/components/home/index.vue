@@ -13,7 +13,7 @@
 		methods:{
 			getData(){
 				this.$http.post('/article/list').then((res)=>{
-					console.log(res)
+					this.data = res.data
 				}).catch((err)=>{
 					console.log(err)
 				})
