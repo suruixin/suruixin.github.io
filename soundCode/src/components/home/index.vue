@@ -1,31 +1,45 @@
 <template>
-	<div id="home">
-		
-	</div>
+	<ul id="home">
+		<li v-for="(item,index) in data" :key="index" class="hover homeItem">
+			{{item.title}}
+		</li>
+	</ul>
 </template>
 <script>
 	export default({
-		data(){
+		data() {
 			return {
-				data:[]
+				data: []
 			}
 		},
-		methods:{
-			getData(){
-				this.$http.post('/article/list').then((res)=>{
-					this.data = res.data
-				}).catch((err)=>{
+		methods: {
+			getData() {
+				this.$http.post('/article/list').then((res) => {
+					for(var i = 0; i < 20; i++) {
+						this.data.push(...res.data.data);
+					}
+				}).catch((err) => {
 					console.log(err)
 				})
 			}
 		},
-		created(){
+		created() {
 			this.getData();
 		}
 	})
 </script>
 
 <style scoped lang=less>
+	#home {
+		.homeItem{
+			min-height: 200px;
+			width: 300px;
+			display:inline-block;
+			background:#f2f2f2;
+			margin: 0 15px 15px 0;
+		}
+	}
+	
 	@media screen and (min-width: 900px) {
 		#home {
 			width: 100%;

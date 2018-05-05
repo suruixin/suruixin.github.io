@@ -28,6 +28,9 @@
 		},
 		methods: {
 			headerHover(el, type) {
+				if(document.body.clientWidth < 900){
+					return
+				}
 				if(type == 'enter') {
 					this.$refs.hoverDom.style = `margin-left:${el*200}px`;
 				} else if(type == "leave") {
@@ -40,6 +43,7 @@
 						this.show = true;
 					} else {
 						this.show = false;
+						this.phoneFlag = false
 					}
 				};
 				client();
