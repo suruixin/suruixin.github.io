@@ -101,6 +101,7 @@
 			background: #fff;
 			box-shadow: 0 4px 11px -5px rgba(0, 0, 0, 0.4);
 			position: fixed;
+			z-index: 99999;
 			height: 50px;
 			top: 0;
 			left: 0;
@@ -190,6 +191,7 @@
 	#headerWrapper {
 		width: 100%;
 		color: #666;
+		z-index: 999;
 		.headerCon {
 			.active {
 				color: #C69F73;

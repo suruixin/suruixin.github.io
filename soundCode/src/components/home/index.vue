@@ -31,12 +31,16 @@
 
 <style scoped lang=less>
 	#home {
-		.homeItem{
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		.homeItem {
 			min-height: 200px;
-			width: 300px;
-			display:inline-block;
-			background:#f2f2f2;
-			margin: 0 15px 15px 0;
+			display: inline-block;
+			background: #f2f2f2;
+			margin: 0 10px 10px;
+			padding: 10px;
+			box-sizing: border-box;
 		}
 	}
 	
@@ -46,10 +50,25 @@
 			margin: 0 auto;
 			background: #fff;
 			min-height: 100%;
+			.homeItem {
+				width: 30%;
+			}
 		}
 	}
 	
 	@media screen and (max-width: 900px) {
-		#home {}
+		#home {
+			.homeItem {
+				width: 300px;
+			}
+		}
+	}
+	
+	@media screen and (max-width: 400px) {
+		#home {
+			.homeItem {
+				width: 100%;
+			}
+		}
 	}
 </style>
