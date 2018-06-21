@@ -4,15 +4,14 @@ const express = require('express');
 var app = express();
 const songList = require('./routes/songList');
 
-
-
+//全局方法添加
 app.use((req,res,next)=>{
 	req.request = request;
 	req.cheerio = cheerio;
 	next();
 })
 
-// 请求歌单列表
+// 请求歌单列表   网易音乐排行榜等
 app.use('/songList',songList);
 
 
