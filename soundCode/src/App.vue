@@ -1,7 +1,8 @@
 <template>
 	<div id="app">
-		<Nheader></Nheader>
-		<router-view name="home" />
+		<!-- <Nheader></Nheader>
+		<router-view name="home" /> -->
+		<router-view />
 	</div>
 </template>
 
