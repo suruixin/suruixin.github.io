@@ -1,28 +1,35 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/home/index'
-import install from '@/components/utils/article/install'
-import music from '@/components/music/index'
+import discover from '@/components/music/discover'
+// import home from '@/components/home/index'
+// import install from '@/components/utils/article/install'
+// import music from '@/components/music/index'
 
 Vue.use(Router)
 
 export default new Router({
-	routes: [{
-			path: '/',
-			name: 'home',
-			components: {
-				home
-			}
-		},
+	routes: [
+		// {
+		// 	path: '/',
+		// 	name: 'home',
+		// 	components: {
+		// 		home
+		// 	}
+		// },
+		// {
+		// 	path: '/article/install',
+		// 	name: 'install',
+		// 	component: install
+		// },
+		// {
+		// 	path: '/music',
+		// 	name:'music',
+		// 	component: music
+		// }
 		{
-			path: '/article/install',
-			name: 'install',
-			component: install
-		},
-		{
-			path: '/music',
-			name:'music',
-			component: music
+			path: '/discover',
+			name: 'discover',
+			component: discover
 		}
 	]
 })

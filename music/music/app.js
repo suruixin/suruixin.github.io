@@ -1,8 +1,22 @@
 const request = require('superagent');
 const cheerio = require('cheerio');
 const express = require('express');
-var app = express();
+const path = require('path');
+const bodyParser = require("body-parser");  
+const ejs = require('ejs');
 const songList = require('./routes/songList');
+
+
+var app = express();
+
+//解析post请求
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+//设置输出模板
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 
 //全局方法添加
 app.use((req,res,next)=>{

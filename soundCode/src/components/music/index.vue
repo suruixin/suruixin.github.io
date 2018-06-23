@@ -1,9 +1,17 @@
 <template>
-	<div id="music">
+	<!-- <div id="music">
 		<ul>
-			<li v-for="(item,index) in title" :key="index">{{item.title}}</li>
+			<li v-for="(item,index) in title" :key="index" @click="songListName(item)">{{item.title}}</li>
 		</ul>
-	</div>
+
+	</div> -->
+
+	<el-container>
+		<el-header>
+			
+		</el-header>
+		<el-main></el-main>
+	</el-container>
 </template>
 <script type="text/javascript">
 export default ({
@@ -17,10 +25,13 @@ export default ({
 	},
 	methods:{
 		getData(){
-			this.$http.get('/songList').then((res)=>{
-				this.title = res.data.data;
+			this.$get('/songList').then((res)=>{
+				this.title = res.data;
 
 			})
+		},
+		songListName(item){//获取歌单事件
+			console.log(item)
 		}
 	}
 })

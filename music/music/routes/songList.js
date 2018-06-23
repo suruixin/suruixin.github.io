@@ -32,6 +32,7 @@ router.get('/', (req, res, next) => {
 	})
 });
 
+router.use('/discover',require('./songList/recommend'))
 
 
 //router.get('/playlist?id=823754244', function(req, res, next) {

@@ -11,11 +11,7 @@ module.exports = {
 		assetsSubDirectory: 'static',
 		assetsPublicPath: '/',
 		proxyTable: {
-			'/songList': {
-				target: 'http://localhost:5000/',
-				changeOrigin: true
-			},
-			'/songList': {
+			'**':{
 				target: 'http://localhost:5000/',
 				changeOrigin: true
 			}
