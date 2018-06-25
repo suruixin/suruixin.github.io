@@ -33,8 +33,15 @@ router.post('/',(req,res,next) => {
 				//新碟上架
 				dom.find('.n-new').find('.f-pr').children('.f-cb').each((i,d)=>{//获取新碟上架
 					$(d).children().each((j,e)=>{
+						if(j == 0 || j == 2){
+							return
+						}
+						var imgurl = $(e).find('.u-cover').find('.j-img').attr('data-src');
+						if(imgurl.lastIndexOf('=') != -1){
+							imgurl = imgurl.replace(imgurl.substring(imgurl.lastIndexOf('=')),'=140y140')
+						}
 						newArr.push({
-							img: $(e).find('.u-cover').find('img').attr('src'),
+							img: imgurl,
 							title: $(e).find('.f-thide').find('a').attr('title'),
 							url: $(e).find('.f-thide').find('a').attr('href'),
 							singer: $(e).find('.f-thide.tit').attr('title')

@@ -1,9 +1,11 @@
 <template>
 	<div id="musicApp">
-		<el-menu :default-active="activeIndex" class="el-menu-demo"  mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" style="padding-left:55px" @select="select">
+		<el-menu :default-active="activeIndex" class="el-menu-demo"  mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" style="padding-left:255px" @select="select">
 			<el-menu-item :index="index.toString()" v-for="(item,index) in title" :key="index">{{item.title}}</el-menu-item>
 		</el-menu>
-		<router-view class="musicBody" :url="url"></router-view>
+		<el-main class="musicBody">
+			<router-view :url="url"></router-view>
+		</el-main>
 	</div>
 </template>
 <script>
@@ -59,6 +61,11 @@ export default {
 	flex-direction: column;
 	.musicBody{
 		flex: 1;
+		width: 100%;
+		overflow-y: auto;
+		overflow-x: hidden;
+		background: #F5F5F5;
+		padding: 0;
 	}
 }
 </style>

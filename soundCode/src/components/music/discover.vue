@@ -2,10 +2,11 @@
 	<ul id="songList">
 		<li v-for="(item,index) in title" :key="index" class="songItem">
 			<label>{{item.title}}</label>
-			<el-card class="box-card" v-if="song.img" v-for="song in item.data" :key="song.title">
+			<el-card class="box-card" v-if="song.img" v-for="(song,i) in item.data" :key="i">
 				<div class="text item">
 					<img :src="song.img">
-					<p>{{song.title}}</p>
+					<p v-if="song.title">{{song.title}}</p>
+					<p v-if="song.singer">{{song.singer}}</p>
 				</div>
 			</el-card>
 		</li>
@@ -46,10 +47,12 @@ export default({
 </script>
 <style type="text/css" lang=less>
 #songList{
-	height:100%;
-	overflow-y: auto;
-	overflow-x: hidden;
+	width: 960px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 0 20px;
 	.songItem{
+		font-size: 12px;
 		&:after{
 			content: '';
 			display: block;
@@ -60,12 +63,22 @@ export default({
 			display: block;
 			height: 45px;
 			line-height: 45px;
+			padding-left: 15px;
+			border-bottom: 3px solid #FFD04B;
+			font-size: 14px;
+		}
+		.box-card{
+			width: 180px;
+			float: left;
+			height: 225px;
+			margin: 5px;
 		}
 	}
-	
-}
-.box-card {
-	width: 180px;
-	float: left;
+	.text{
+		p{
+			margin: 0;
+			line-height: 20px;
+		}
+	}
 }
 </style>
