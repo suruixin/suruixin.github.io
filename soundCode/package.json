@@ -1,8 +1,8 @@
 {
-  "name": "sound-code",
+  "name": "soundcode",
   "version": "1.0.0",
-  "description": "this is a Personal blog",
-  "author": "srx",
+  "description": "A Vue.js project",
+  "author": "suruixin <507811581@qq.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -10,15 +10,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "element-ui": "^2.4.1",
-    "jsonp": "^0.2.1",
-    "less": "^3.0.2",
+    "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "qs": "^6.5.2",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

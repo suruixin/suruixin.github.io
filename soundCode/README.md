@@ -1,6 +1,6 @@
-# sound-code
+# soundcode
 
-> this is a Personal blog
+> A Vue.js project
 
 ## Build Setup
 

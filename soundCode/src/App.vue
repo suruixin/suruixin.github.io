@@ -1,71 +1,19 @@
 <template>
-	<div id="musicApp">
-		<el-menu :default-active="activeIndex" class="el-menu-demo"  mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" style="padding-left:255px" @select="select">
-			<el-menu-item :index="index.toString()" v-for="(item,index) in title" :key="index">{{item.title}}</el-menu-item>
-		</el-menu>
-		<el-main class="musicBody">
-			<router-view :url="url"></router-view>
-		</el-main>
-	</div>
+  <div id="app">
+    <tabTop></tabTop>
+    <!-- <router-view/> -->
+  </div>
 </template>
-<script>
-import { mapGetters } from 'vuex'
-import Nheader from '@/components/utils/header'
-export default {
-	name: 'App',
-	data() {
-		return {
-			activeIndex: '0',
-			title:[],
-			url: '/discover'
-		}
-	},
-	methods: {
-		getData(){
-			this.$get('/songList').then((res)=>{
-				this.title = res.data;
 
-			})
-		},
-		select(key, keyPath){
-			if(key != '3'){
-				this.url = this.title[key*1].url;
-				this.$router.push(this.url)
-			}else{
-				const h = this.$createElement;
-		        this.$notify({
-		          title: '友情提示',
-		          message: h('i', { style: 'color: #FFD04B'}, `${this.title[key*1].url}为网易云专属，无法调取歌单！`)
-		        });
-			}
-			
-			console.log(key, keyPath)
-		}
-	},
-	created() {
-		this.getData();
-	},
-	components: {
-		Nheader
-	}
+<script>
+import tabTop from '@/components/tab/top'
+export default {
+  name: 'App',
+  components:{
+    tabTop
+  }
 }
 </script>
 
-<style lang=less>
-#musicApp {
-	height: 100%;
-	overflow: hidden;
-	font-family: 'Avenir', Helvetica, Arial, sans-serif;
-	box-sizing: border-box;
-	display:flex;
-	flex-direction: column;
-	.musicBody{
-		flex: 1;
-		width: 100%;
-		overflow-y: auto;
-		overflow-x: hidden;
-		background: #F5F5F5;
-		padding: 0;
-	}
-}
+<style>
 </style>
