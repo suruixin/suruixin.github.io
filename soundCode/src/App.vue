@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <tabTop></tabTop>
-    <!-- <router-view/> -->
+    <router-view class="routerContent"/>
   </div>
 </template>
 
@@ -15,5 +15,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" >
+#app{
+	height: 100%;
+	.routerContent{
+		height: calc(100% - 42px);
+	}
+}
 </style>

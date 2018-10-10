@@ -2,7 +2,7 @@
   <ul id="top">
   	<router-link to="/" tag="li" class="tabItem hoverColor">首页</router-link>
   	<li class="tabItem tabHover">
-  		<span class="hoverColor">文档</span>
+  		<span class="hoverColor">文档<i class="icon-srx icon-down"></i></span>
   		<ul class="document">
   			<router-link to="/document/axios" tag="li" class="hoverColor">axios</router-link>
   		</ul>
@@ -36,6 +36,19 @@ export default {
 			&:hover{
 				color: #EDE09D;
 				border-color: #EDE09D;
+			}
+			&:hover .icon-down {
+				transform: rotate(0);
+			}
+			.icon-down {
+				transform: rotate(180deg);
+			    display: inline-block;
+			    height: 20px;
+			    width: 20px;
+			    line-height: 20px;
+			    text-align: center;
+			    vertical-align: middle;
+			    transition: transform .3s;
 			}
 		}
 		.document{

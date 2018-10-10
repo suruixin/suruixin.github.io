@@ -4,8 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import '@/assets/less/style.less'
+import '@/assets/css/iconfont.css'
+import utils from '@/assets/utils'
 
 Vue.config.productionTip = false
+Vue.use(utils)
 
 /* eslint-disable no-new */
 new Vue({
