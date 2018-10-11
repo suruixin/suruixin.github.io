@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios'
 
 const deletes = (url, params) => {

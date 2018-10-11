@@ -1,3 +1,4 @@
+/* eslint-disable */
 const sync = (url) => {
   return (async() => {
     var arr = [];

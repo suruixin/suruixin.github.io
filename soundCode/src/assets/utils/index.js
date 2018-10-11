@@ -1,3 +1,4 @@
+/* eslint-disable */
 var utils = {};
 
 import request from './axios'
