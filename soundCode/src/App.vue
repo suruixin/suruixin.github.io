@@ -19,7 +19,7 @@ export default {
 #app{
 	height: 100%;
 	.routerContent{
-		height: calc(100% - 42px);
+		height: calc(100% - 61px);
 	}
 }
 </style>

@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import home from '@/components/home/index'
-import axio from '@/components/document/axios'
+import axio from '@/components/document/axios/index'
+import axiosIntroduction from '@/components/document/axios/introduction'
+import axiosInstall from '@/components/document/axios/install'
+import axiosApi from '@/components/document/axios/api'
+import '@/assets/less/template.less'
 
 Vue.use(Router)
 
@@ -15,7 +19,20 @@ export default new Router({
     {
       path: '/document/axios',
       name: 'axios',
-      component: axio
+      component: axio,
+      children: [{
+        path: 'introduction',
+        name: 'axiosIntroduction',
+        component: axiosIntroduction
+      }, {
+        path: 'install',
+        name: 'axiosInstall',
+        component: axiosInstall
+      }, {
+        path: 'api/:api',
+        name: 'axiosApi',
+        component: axiosApi
+      }]
     },
   ]
 })

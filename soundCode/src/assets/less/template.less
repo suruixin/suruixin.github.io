@@ -1,0 +1,61 @@
+.templates{
+	height: 100%;
+	display: flex;
+	.tempTab{
+		width: 260px;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		.tempTabItem{
+			font-size: 14px;
+			line-height: 40px;
+			color: #666;
+			font-weight: 600;
+			cursor: pointer;
+			span.ed{
+				padding-left: 45px;
+				display: inline-block;
+				height: 40px;
+				width: 100%;
+				transition: color .2s;
+				&:hover{
+					color: #EDE09D;
+				}
+			}
+		}
+	}
+	.tempCon{
+		flex: 1;
+		height: 100%;			
+		overflow-x: hidden;
+		overflow-y: auto;
+		padding: 10px 5px;
+		box-sizing: border-box;	
+	}
+	.desc{
+		font-size: 14px;
+		color: #666;
+		line-height: 21px;
+	}
+	.blue{
+		color: #6A95D3;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	.zd{
+		cursor: context-menu;
+		background: #E5E5E0;
+		display: inline-block;
+		border-radius: 2px;
+		padding: 0 5px;
+		margin: 0 3px;
+	}
+	.bash {
+		background: #f0f0f0;
+		color: #666;
+		font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+		overflow-x: auto;
+		padding-right: 5px;
+		margin: 10px 0
+	}
+}

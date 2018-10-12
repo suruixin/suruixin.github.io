@@ -2,12 +2,13 @@
 	"code": "1",
 	"data": {
 		"tab": [
-			"介绍",
-			"安装"
+			{"name": "介绍"},
+			{"name": "安装"},
+			{"name": "方法", "child": [{"name": "get"},{"name": "post"},{"name": "sync"},{"name": "axios"},{"name": "delete"}]}
 		],
 		"content": [
-			"此插件在作者本人的理解基础上对axios进行一个二次封装，便于使用",
-			"首先安装依赖'npm install axios qs --save--dev'"
+			{"name": "此插件在作者本人的理解基础上对axios进行一个二次封装，便于使用"},
+			{"name": "首先安装依赖'npm install axios qs --save--dev'"}
 		]
 	},
 	"msg": "ok"
