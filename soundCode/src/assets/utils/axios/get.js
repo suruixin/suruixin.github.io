@@ -2,7 +2,6 @@
 import axios from 'axios'
 import {setKey, localhosts} from './local'
 import config from '../config'
-console.log(config)
 
 var getData = function(url, params, duration){
   return new Promise((resolve, reject) => {
@@ -10,7 +9,6 @@ var getData = function(url, params, duration){
       if (config.request.intercept.call(res.data)) {
         return
       }
-      console.log(1)
       resolve(res.data)
       if (duration) {
         setKey(url, params, res.data, duration)

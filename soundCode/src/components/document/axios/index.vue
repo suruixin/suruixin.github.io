@@ -13,8 +13,9 @@
 					<li>sync</li>
 					<li>delete</li>
 				</ul>
+				<router-link class="tempTabItem" to="/document/axios/parameter/parameter" tag="li"><span class="ed">参数</span></router-link>
 			</ul>
-			<div class="tempCon">
+			<div class="tempCon" id="tempCon">
 				<router-view></router-view>
 			</div>
 		</div>
@@ -33,7 +34,8 @@ export default({
 		}
 	},
 	mounted(){
-		this.$get('/static/json/axios.json').then(res => {
+		this.$get('/static/json/axios.json',{}, function(){return 20000}).then(res => {
+			console.log(res)
 			if (res.code === "1") {
 				this.tab = res.data.tab
 				this.content = res.data.content

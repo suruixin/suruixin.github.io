@@ -8,10 +8,10 @@ const setKey = function( url, params, data, duration ) {
     var time = (new Date().getTime() + 60*10*1000)
   } else if(typeof duration === 'number') {
     var time = (new Date().getTime() + (duration)*60*1000)
-  }else if(typeof deration === 'function'){
-    var time = duration() > 0 ? duration(): console.error('duration has no return value!')
-  }else if(typeof deration === 'string'){
-    var time = config.deration[deration] ? config.deration[deration] > 0 ? config.deration[deration]: console.error('duration has no return value!') : console.error(`config.deration.${duration} is undefined!`)
+  }else if(typeof duration === 'function'){
+    var time = duration() > 0 ? (new Date().getTime() + duration()): console.error('duration has no return value!')
+  }else if(typeof duration === 'string'){
+    var time = config.request.duration[duration] ? config.request.duration[duration]() > 0 ? (new Date().getTime() + config.request.duration[duration]()): console.error('duration has no return value!') : console.error(`config.duration.${duration} is undefined!`)
   }
   local.removeItem(getKey(keys).toString(32))
   local.setItem("'"+keys+"'", time)

@@ -5,6 +5,7 @@ import axio from '@/components/document/axios/index'
 import axiosIntroduction from '@/components/document/axios/introduction'
 import axiosInstall from '@/components/document/axios/install'
 import axiosApi from '@/components/document/axios/api'
+import parameter from '@/components/document/axios/parameter'
 import '@/assets/less/template.less'
 
 Vue.use(Router)
@@ -20,6 +21,7 @@ export default new Router({
       path: '/document/axios',
       name: 'axios',
       component: axio,
+      redirect: '/document/axios/introduction',
       children: [{
         path: 'introduction',
         name: 'axiosIntroduction',
@@ -32,6 +34,10 @@ export default new Router({
         path: 'api/:api',
         name: 'axiosApi',
         component: axiosApi
+      }, {
+        path: '/document/axios/parameter/:parameter',
+        name: 'parameter',
+        component: parameter
       }]
     },
   ]
