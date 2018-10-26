@@ -1,11 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import home from '@/components/home/index'
-import axio from '@/components/document/axios/index'
-import axiosIntroduction from '@/components/document/axios/introduction'
-import axiosInstall from '@/components/document/axios/install'
-import axiosApi from '@/components/document/axios/api'
-import parameter from '@/components/document/axios/parameter'
 import '@/assets/less/template.less'
 
 Vue.use(Router)
@@ -15,29 +9,33 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
+      component: () => import('@/components/home/index') 
     },
     {
       path: '/document/axios',
       name: 'axios',
-      component: axio,
+      component: () => import('@/components/document/axios/index'),
       redirect: '/document/axios/introduction',
       children: [{
         path: 'introduction',
         name: 'axiosIntroduction',
-        component: axiosIntroduction
+        component: () => import ('@/components/document/axios/introduction')
       }, {
         path: 'install',
         name: 'axiosInstall',
-        component: axiosInstall
+        component: () => import ('@/components/document/axios/install')
       }, {
         path: 'api/:api',
         name: 'axiosApi',
-        component: axiosApi
+        component: () => import ('@/components/document/axios/api')
       }, {
         path: '/document/axios/parameter/:parameter',
         name: 'parameter',
-        component: parameter
+        component: () => import ('@/components/document/axios/parameter')
+//       }, {
+//         path: '/document/axios/example',
+//         name: 'example',
+//         component: () => import ('@/components/document/axios/example')
       }]
     },
   ]

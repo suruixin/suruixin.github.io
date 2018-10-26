@@ -14,7 +14,7 @@ export default({
 	},
 	mounted(){
 		this.timeout = setTimeout(m => {
-			// this.$router.push('/document/axios')
+			this.$router.push('/document/axios')
 		}, 3000);
 	},
 	methods:{

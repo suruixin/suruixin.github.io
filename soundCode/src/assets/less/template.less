@@ -1,6 +1,7 @@
 @blue: #74AFD8;
 @gray: #f2f2f2;
 .templates{
+	background: #f9f9f9;
 	height: 100%;
 	display: flex;
 	.tempTab{
@@ -21,18 +22,33 @@
 				width: 100%;
 				transition: color .2s;
 				&:hover{
-					color: #EDE09D;
+					color: #CE5423;
+				}
+			}
+			span.childEd{
+				font-size: 13px;
+				padding-left: 65px;
+				display: inline-block;
+				height: 30px;
+				width: 100%;
+				transition: color .2s;
+				&:hover{
+					color: #CE5423;
 				}
 			}
 		}
 	}
-	.tempCon{
-		height: 100%;			
+	#tempCon{
+		height: 100%;
+		flex: 1;
 		overflow-x: hidden;
 		overflow-y: auto;
+	}
+	.tempConItem{
+		height: 100%;
+		width: 600px;
 		padding: 10px 5px;
 		box-sizing: border-box;	
-		width: 600px;
 	}
 	.desc{
 		font-size: 14px;

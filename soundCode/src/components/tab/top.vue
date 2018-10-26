@@ -27,10 +27,10 @@ export default {
 			font-size: 20px;
 			position: relative;
 			&:hover .icon-down {
-				transform: rotate(0);
+				transform: rotate(180deg);
 			}
 			.icon-down {
-				transform: rotate(180deg);
+				transform: rotate(0);
 			    display: inline-block;
 			    height: 20px;
 			    width: 20px;

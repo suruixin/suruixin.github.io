@@ -1,27 +1,9 @@
 <template>
-<div ref="parameter" class="parameter">
-  <p class="desc">参数介绍</p>
-  <ul class="tempConItem" ref="tempConItem">
-    <li>
-      <router-link to="/document/axios/parameter/url" class="tem-title" tag="p">url</router-link>
-      <div class="tem-pl">
-        <p class="desc">类型：String</p>
-        <p class="desc">必填，请求地址</p>
-      </div>
-    </li>
-    <li>
-      <router-link to="/document/axios/parameter/prams" class="tem-title" tag="p">prams</router-link>
-      <div class="tem-pl">
-        <p class="desc">类型：Object</p>
-        <p class="desc">选填，参数</p>
-      </div>
-    </li>
-    <li>
-      <router-link to="/document/axios/parameter/duration" class="tem-title" tag="p">duration</router-link>
-      <div class="tem-pl">
-        <p class="desc">类型：Number|Boolean|String|function</p>
-        <p class="desc">选填，本地存储时间</p>
+	<div class="tem-pl">
+		<p class="desc">下来推荐下小伙伴比较喜欢用的两种数据请求的方式：</p>
+		<p class="desc">第一种是新建一个文件夹，将所有的数据请求放在这个文件夹下</p>
 <pre class="bash hljs">
+	
   <span>//例子</span>
   // Number
   传入number代表需要存储的具体时间，单位为:分
@@ -71,27 +53,11 @@
     console.log(res) // 十分钟内将在本地读取数据，超过十分钟进行新的数据请求并替换继续保存十分钟
   })
 </pre>
-      </div>
-    </li>
-  </ul>
-</div>
-
+	</div>
 </template>
+
 <script>
 </script>
+
 <style>
-  .tem-title{
-    font-size: 21px;
-    color: #333;
-    font-weight: 600;
-    line-height: 42px;
-      cursor: pointer;
-  }
-</style>
-<style scoped>
-	.parameter{
-		height: 100%;
-		overflow-x: hidden;
-		overflow-y: auto;
-	}
 </style>

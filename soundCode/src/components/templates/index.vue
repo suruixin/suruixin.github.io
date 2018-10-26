@@ -3,10 +3,11 @@
 		<ul class="tempTab">
 			<li class="tempTabItem" v-if="tab" v-for="(item,index) in tab"><span class="ed">{{item.name}}</span></li>
 		</ul>
-		<ul class="tempCon">
-			<li class="tempConItem" v-if="content" v-for="(item,index) in content"><span class="ed">{{item.name}}</span></li>
-			
-		</ul>
+		<div class="tempConWrapper">
+			<ul class="tempCon">
+				<li class="tempConItem" v-if="content" v-for="(item,index) in content"><span class="ed">{{item.name}}</span></li>
+			</ul>
+		</div>
 	</div>
 </template>
 <script>
@@ -46,10 +47,7 @@ export default({
 			}
 		}
 		.tempCon{
-			flex: 1;
-			height: 100%;			
-			overflow-x: hidden;
-			overflow-y: auto;
+			height: 100%;
 		}
 	}
 </style>
