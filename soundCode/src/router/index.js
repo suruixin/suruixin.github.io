@@ -1,35 +1,42 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import discover from '@/components/music/discover'
-// import home from '@/components/home/index'
-// import install from '@/components/utils/article/install'
-// import music from '@/components/music/index'
+import '@/assets/less/template.less'
 
 Vue.use(Router)
 
 export default new Router({
-	routes: [
-		// {
-		// 	path: '/',
-		// 	name: 'home',
-		// 	components: {
-		// 		home
-		// 	}
-		// },
-		// {
-		// 	path: '/article/install',
-		// 	name: 'install',
-		// 	component: install
-		// },
-		// {
-		// 	path: '/music',
-		// 	name:'music',
-		// 	component: music
-		// }
-		{
-			path: '/discover',
-			name: 'discover',
-			component: discover
-		}
-	]
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: () => import('@/components/home/index') 
+    },
+    {
+      path: '/document/axios',
+      name: 'axios',
+      component: () => import('@/components/document/axios/index'),
+      redirect: '/document/axios/introduction',
+      children: [{
+        path: 'introduction',
+        name: 'axiosIntroduction',
+        component: () => import ('@/components/document/axios/introduction')
+      }, {
+        path: 'install',
+        name: 'axiosInstall',
+        component: () => import ('@/components/document/axios/install')
+      }, {
+        path: 'api/:api',
+        name: 'axiosApi',
+        component: () => import ('@/components/document/axios/api')
+      }, {
+        path: '/document/axios/parameter/:parameter',
+        name: 'parameter',
+        component: () => import ('@/components/document/axios/parameter')
+//       }, {
+//         path: '/document/axios/example',
+//         name: 'example',
+//         component: () => import ('@/components/document/axios/example')
+      }]
+    },
+  ]
 })

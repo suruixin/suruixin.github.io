@@ -1,0 +1,88 @@
+@blue: #74AFD8;
+@gray: #f2f2f2;
+.templates{
+	background: #f9f9f9;
+	height: 100%;
+	display: flex;
+	.tempTab{
+		width: 300px;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+		.tempTabItem{
+			font-size: 14px;
+			line-height: 40px;
+			color: #666;
+			font-weight: 600;
+			cursor: pointer;
+			span.ed{
+				padding-left: 45px;
+				display: inline-block;
+				height: 40px;
+				width: 100%;
+				transition: color .2s;
+				&:hover{
+					color: #CE5423;
+				}
+			}
+			span.childEd{
+				font-size: 13px;
+				padding-left: 65px;
+				display: inline-block;
+				height: 30px;
+				width: 100%;
+				transition: color .2s;
+				&:hover{
+					color: #CE5423;
+				}
+			}
+		}
+	}
+	#tempCon{
+		height: 100%;
+		flex: 1;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+	.tempConItem{
+		height: 100%;
+		width: 600px;
+		padding: 10px 5px;
+		box-sizing: border-box;	
+	}
+	.desc{
+		font-size: 14px;
+		color: #666;
+		line-height: 28px;
+	}
+	.blue{
+		color: #6A95D3;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	.zd{
+		cursor: context-menu;
+		background: @gray;
+		display: inline-block;
+		border-radius: 2px;
+		padding: 0 5px;
+		margin: 0 3px;
+	}
+	.bash {
+		background: #f0f0f0;
+		color: #666;
+		font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+		overflow-x: auto;
+		padding: 0 5px 10px 0;
+		margin: 10px 0;
+		border-radius: 2px;
+	}
+	.tem-a {
+		color: @blue;
+		text-decoration: initial;
+		padding: 0 3px;
+	}
+	.tem-pl {
+		padding-left: 15px;
+	}
+}
