@@ -1,1 +1,0 @@
-this.main=(window.webpackJsonpmain=window.webpackJsonpmain||[]).push([[1],{"./main.js":function(n,i,o){n.hot.accept(),console.log(1)}},[["./main.js",0]]]);
