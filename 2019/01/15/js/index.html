@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">new FullStackEngineer()</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name"></a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">new FullStackEngineer()</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            [Untitled Post]
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">79</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/01/15</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,95 +393,49 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/15/js/">
-            
-                <span>[Untitled Post]</span>
-        </a>
-        <div class="abstract-content">
-            eval当eval被赋值后,调用时,修改当前作用域下变量1234567891011121314var global = eval;var x = &apos;hello&apos;, y = &apos;word&apos;;function e()&#123;  var x = &apos;x&apos;;  eval(&apos;x = 1&apos;);  return x&#125;function g()&#123;  var y = &apos;y&apos;;  global(&apos;y = 2&apos;);  return y&#125;console.log(e(...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/15</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>eval</strong><br>当eval被赋值后,调用时,修改当前作用域下变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var global = eval;</span><br><span class="line">var x = &apos;hello&apos;, y = &apos;word&apos;;</span><br><span class="line">function e()&#123;</span><br><span class="line">  var x = &apos;x&apos;;</span><br><span class="line">  eval(&apos;x = 1&apos;);</span><br><span class="line">  return x</span><br><span class="line">&#125;</span><br><span class="line">function g()&#123;</span><br><span class="line">  var y = &apos;y&apos;;</span><br><span class="line">  global(&apos;y = 2&apos;);</span><br><span class="line">  return y</span><br><span class="line">&#125;</span><br><span class="line">console.log(e(), x) // 1 &quot;hello&quot;</span><br><span class="line">console.log(g(), y) // &quot;y&quot; 2</span><br></pre></td></tr></table></figure></p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/31/build/">
-            
-                <span>electron-vue使用electron-updater实现自动更新</span>
-        </a>
-        <div class="abstract-content">
-            今天呢，给大家带来一篇干货满满的electron-vue自动升级的教程，话不多说，开始我的表演!
-   
-
-
-配置文件          “package.json”
-
-12345678910111213&quot;build&quot; : &#123;    &quot;publish&quot;: [      &#123;        &quot;provider&quot;: &quot;generic&quot;,    	&quot;url&quot;: &quot;http://127.0.0.1:3000/newfile/&quot;      &#125;    ]...
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://suruixin.github.io/#">四月</a>
+            </p><p>原文链接：<a href="https://suruixin.github.io/#/2019/01/15/js/">https://suruixin.github.io/#/2019/01/15/js/</a>
+            </p><p>发表日期：<a href="https://suruixin.github.io/#/2019/01/15/js/">January 15th 2019, 11:01:35 pm</a>
+            </p><p>更新日期：<a href="https://suruixin.github.io/#/2019/01/15/js/">January 15th 2019, 11:01:35 pm</a>
+            </p><p>版权声明：转载请注明出处</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/31</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/30/electron-build/">
-            
-                <span>electron-builder打包build配置</span>
-        </a>
-        <div class="abstract-content">
-            市面上对于electron-builder打包的介绍文章很多，这里不做过多介绍，如果需要可以看苏南大叔的博客，这里只是针对打包配置进行一个总结。为了不浪费大家时间，如果你有以下问题，可以试着看我的文档：
-
-打包后发现文件访问不了，在开发环境下是好的
-打包的时候，怎么设置不让安装在c盘
-将文件移动到根目录
-
-
-配置文件如下
-package.json
-
-123456789101112131415161718192021222324252627282930313233343536373839&#123;  &quot;name&quot;: &quot;demo&quot;,  &quot;v...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/30</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2018/12/31/build/" title="electron-vue使用electron-updater实现自动更新">
+                    <div class="prevTitle">electron-vue使用electron-updater实现自动更新</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -509,6 +518,24 @@ package.json
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -666,6 +693,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
